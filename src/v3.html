@@ -100,6 +100,15 @@ textarea{min-height:90px;resize:vertical}
 .flipwrap{perspective:1200px;margin-top:18px}
 .flip{position:relative;width:100%;aspect-ratio:1.55;border:0;padding:0;background:transparent;cursor:pointer;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.2,.8,.2,1);display:block;font:inherit;color:inherit}
 .flip.open{transform:rotateY(180deg);cursor:default}
+.flipwrap{position:relative}
+.flip:not(.open){animation:wig 2.6s ease-in-out infinite}
+@keyframes wig{0%,60%,100%{transform:rotate(0)}65%{transform:rotate(-3deg) scale(1.02)}72%{transform:rotate(3deg) scale(1.02)}79%{transform:rotate(-2deg)}86%{transform:rotate(1deg)}}
+.front .tap{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.18);border-radius:999px;padding:8px 14px;font-weight:600;opacity:1;animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{50%{background:rgba(255,255,255,.34)}}
+.cf{position:absolute;left:50%;top:50%;border-radius:2px;pointer-events:none;z-index:3;opacity:0;animation:burst 1.9s cubic-bezier(.15,.7,.3,1) forwards}
+@keyframes burst{0%{opacity:1;transform:translate(-50%,-50%) rotate(0)}70%{opacity:1}100%{opacity:0;transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y) + 160px)) rotate(var(--r))}}
+.back .amt{animation:none}.flip.open .back .amt{animation:pop .6s .5s cubic-bezier(.2,1.6,.4,1) both}
+@keyframes pop{from{transform:scale(.4);opacity:0}}
 .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:10px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;text-align:left;overflow:hidden}
 .front{background:var(--acc);color:var(--onacc)}
 .front::after{content:"";position:absolute;right:-40px;bottom:-40px;width:180px;height:180px;border:1px solid currentColor;border-radius:50%;opacity:.25}
@@ -177,7 +186,7 @@ fname:"First name",biz:"Business name",email:"Work email",site:"Your website (op
 consent:"Email me my results, reminders about my bonus and occasional AI tips for my business. Unsubscribe anytime.",nospam:"We never share your details. Bluluma Design, Vancouver, BC.",
 anah:"Analyzing your answers",steps:["Scoring your 5 areas","Ranking your biggest gaps","Matching your personal bonus","Building your 30-day plan"],
 of100:"out of 100",five:"Your five areas",
-bonusk:"Matched to your biggest gap",bonush:"You've unlocked a <em>personal bonus.</em>",tap:"Tap to reveal",bonusfront:"Your Bluluma bonus",
+bonusk:"Matched to your biggest gap",bonush:"You've unlocked a <em>personal bonus.</em>",tap:"Tap to reveal your bonus",bonusfront:"Your Bluluma bonus",
 off:"off your",valid:d=>`Valid until ${d} (14 days).`,fine:"For a signed project only. Not redeemable for cash.",
 unlockh:"Unlock your full report",unlockp:"What's costing you customers, what to fix first, and your 30-day plan.",once:"One-time payment. No subscription.",
 pay:["Detailed breakdown of all 5 areas","Your top 3 gaps, ranked by impact","A week-by-week 30-day action plan","Your recommended package","$2.99 credited toward any Bluluma project"],
@@ -190,10 +199,10 @@ canh:"What we build for <em>businesses like yours.</em>",canp:"Websites that loo
 caseh:"Recent work",casep:"Websites designed and built by Bluluma.",
 revh:"What clients say",
 stat:[["20+","years designing for business"],["500+","websites built"],["EN · 中文","bilingual sites"]],
-ctah:"Get your custom proposal and a <em>free preview.</em>",
-ctap1:"We'll review your current website and send a redesign preview built for your business, with a proposal for your recommended package.",
-ctap0:"We'll design a free homepage concept for your business and send it with a proposal for your recommended package.",
-ctabonus:"Your $300 bonus is applied automatically.",ctah2:"Get your <em>custom proposal.</em>",ctap2:"We'll send a proposal for your recommended package, built around your answers and your three biggest gaps.",prevup:"Unlock the full report and we'll include a free homepage preview with your proposal.",ctac2:"Yes, send me my custom proposal",
+ctah:"Get your custom proposal and a <em>free website preview.</em>",
+ctap1:"We'll review your current website and design a free preview of your new homepage, sent by email with a proposal for your recommended package.",
+ctap0:"We'll design a free preview of your new website homepage, sent by email with a proposal for your recommended package.",
+ctabonus:"Your $300 bonus is applied automatically.",ctah2:"Get your <em>custom proposal.</em>",ctab1:"Get your custom proposal and a free website preview",ctab2:"Get your custom proposal",ctap2:"We'll send a proposal for your recommended package, built around your answers and your three biggest gaps.",prevup:"Unlock the full report and we'll include a free homepage preview with your proposal.",ctac2:"Yes, send me my custom proposal",
 ctac:"Yes, send me my custom proposal and free preview",notes:"Anything we should know? (optional)",ctab:"Send my proposal",
 ctas:"No calls, no pressure. Everything arrives by email.",
 done:"Request received.",donep:e=>`We'll email your proposal and preview to <b>${e}</b> within 2 business days.`,
@@ -208,7 +217,7 @@ fname:"名字",biz:"公司名稱",email:"工作 Email",site:"公司網址（選�
 consent:"請用 Email 寄給我評估結果、專屬獎勵到期提醒，以及偶爾的生意 AI 小貼士。隨時可以退訂。",nospam:"我們絕不會分享你的資料。Bluluma Design，加拿大卑詩省溫哥華。",
 anah:"正在分析你的答案",steps:["計算五大範疇分數","排列你最大的缺口","配對你的專屬獎勵","制定你的 30 天計劃"],
 of100:"滿分 100",five:"你的五大範疇",
-bonusk:"根據你最大的缺口配對",bonush:"你獲得了一份<em>專屬獎勵。</em>",tap:"點一下揭曉",bonusfront:"你的 Bluluma 專屬獎勵",
+bonusk:"根據你最大的缺口配對",bonush:"你獲得了一份<em>專屬獎勵。</em>",tap:"點一下，揭曉你的獎勵",bonusfront:"你的 Bluluma 專屬獎勵",
 off:"",valid:d=>`有效期至 ${d}（14 天）。`,fine:"僅限簽約主案使用，不可兌換現金。",
 unlockh:"解鎖完整報告",unlockp:"什麼正在讓你流失客人、應該先修正什麼，以及你的 30 天計劃。",once:"一次性付款，不是訂閱。",
 pay:["五大範疇的詳細分析","你最大的 3 個缺口，按影響排序","逐週的 30 天行動計劃","為你推薦的方案","$2.99 可抵扣任何 Bluluma 項目"],
@@ -221,10 +230,10 @@ canh:"我們為像你這樣的生意<em>打造什麼。</em>",canp:"專業漂亮
 caseh:"近期作品",casep:"由 Bluluma 設計及製作的網站。",
 revh:"客戶怎麼說",
 stat:[["20+","年商業設計經驗"],["500+","個網站作品"],["EN · 中文","雙語網站"]],
-ctah:"免費取得專屬提案和<em>網站預覽。</em>",
-ctap1:"我們會檢視你現有的網站，為你的生意做一個改版預覽，並附上推薦方案的提案。",
-ctap0:"我們會免費為你的生意設計一個首頁概念，並附上推薦方案的提案。",
-ctabonus:"你的 $300 專屬獎勵會自動套用。",ctah2:"免費取得<em>專屬提案。</em>",ctap2:"我們會根據你的答案和最大的三個缺口，寄給你推薦方案的專屬提案。",prevup:"解鎖完整報告，提案會額外附上免費的首頁預覽。",ctac2:"好，請寄給我專屬提案",
+ctah:"取得你的專屬提案和<em>免費網站預覽。</em>",
+ctap1:"我們會檢視你現有的網站，免費為你設計新網站首頁的預覽，連同推薦方案的提案一起用 Email 寄給你。",
+ctap0:"我們會免費為你設計新網站首頁的預覽，連同推薦方案的提案一起用 Email 寄給你。",
+ctabonus:"你的 $300 專屬獎勵會自動套用。",ctah2:"取得你的<em>專屬提案。</em>",ctab1:"取得你的專屬提案和免費網站預覽",ctab2:"取得你的專屬提案",ctap2:"我們會根據你的答案和最大的三個缺口，寄給你推薦方案的專屬提案。",prevup:"解鎖完整報告，提案會額外附上免費的首頁預覽。",ctac2:"好，請寄給我專屬提案",
 ctac:"好，請寄給我專屬提案和免費預覽",notes:"有什麼想讓我們知道的嗎？（選填）",ctab:"寄給我提案",
 ctas:"不用通電話，沒有壓力，所有內容都以 Email 寄出。",
 done:"已收到你的申請。",donep:e=>`我們會在 2 個工作天內把提案和預覽寄到 <b>${e}</b>。`,
@@ -256,7 +265,7 @@ const CAN=[
  ["ops",["Hours back every week","每週省回好幾個小時"],["Automations connect your forms, calendar, invoices and CRM, so the busywork runs itself.","用自動化串連表格、行事曆、發票和 CRM，瑣碎工作自動完成。"]],
  ["data",["Know what's working","清楚知道什麼有效"],["A live dashboard shows where your customers come from and which marketing pays off.","即時 dashboard 讓你看到客人從哪裡來，哪些行銷真正帶來回報。"]],
  ["lang",["Bilingual, done properly","真正做好的雙語網站"],["English and Chinese (or another language) with proper typography and search-friendly pages for each language.","英文加中文（或其他語言），每種語言都有合適的字型排版和利於搜尋的頁面。"]]];
-const BREAKS={1:[0,"rev",0],4:[1,"case",0],7:[2,"rev",2],10:[3,"case",2],13:[4,"rev",1]};
+const BREAKS={7:[2,"rev",2],13:[4,"case",0]};
 const BRK=[[["Great start.","好的開始。"],["Next: how customers find you online.","下一步：客人怎樣在網上找到你。"]],
  [["1 of 5 areas done.","已完成 1 / 5 個範疇。"],["Most owners never look this closely at their business. You're already ahead.","大部分老闆從來沒有這樣仔細看過自己的生意，你已經領先了。"]],
  [["You're halfway there.","已經完成一半。"],["Keep going. The biggest wins usually show up in the next two areas.","繼續加油，最大的改善空間通常就在接下來的兩個範疇。"]],
@@ -276,7 +285,7 @@ const clear=()=>{timers.forEach(clearTimeout);timers=[]};
 function segs(){const on=["quiz","break","lead"].includes(view);$("segs").hidden=!on;if(!on)return;
   const done=view==="break"?S.i+1:S.i;
   [...$("segs").children].forEach((s,k)=>{const lo=k===0?0:2+(k-1)*3,n=k===0?2:3,f=view==="lead"?1:Math.max(0,Math.min(1,(done-lo)/n));s.firstChild.style.setProperty("--f",f)})}
-function dock(label,fn){const d=$("dock");if(!label){d.hidden=true;return}d.hidden=false;$("dockbtn").textContent=label;$("dockbtn").onclick=fn}
+function dock(label,fn){const d=$("dock");d.style.visibility="";if(view!=="result"&&window.ctaObs){ctaObs.disconnect();window.ctaObs=null}if(!label){d.hidden=true;return}d.hidden=false;$("dockbtn").textContent=label;$("dockbtn").onclick=fn}
 function go(v){clear();view=v;window.scrollTo(0,0);$("back").disabled=!(v==="quiz"||v==="break"||v==="lead");draw()}
 function draw(){
   $("back").disabled=!(view==="quiz"||view==="break"||view==="lead");
@@ -287,7 +296,7 @@ function revCard(r){return `<div class="card quote"><div class="stars" aria-labe
 function caseCard(c){return `<div class="card case"><img src="${IB}${c[0]}.webp" alt="${c[1]} website" loading="lazy"><p><b>${c[1]}</b> · ${L(c[2])}</p></div>`}
 function intro(){
   app.innerHTML=`<section class="screen" style="padding-top:18px"><h1>${t("h1")}</h1><p class="lead">${t("intro")}</p>
-   <div class="hero-strip">${CASES.slice(0,3).map(c=>`<img src="img/${c[0]}.webp" alt="${c[1]}">`).join("")}</div>
+   <div class="hero-strip">${CASES.slice(0,3).map(c=>`<img src="${IB}${c[0]}.webp" alt="${c[1]}">`).join("")}</div>
    <p class="small center">${t("casep")}</p>
    <div class="facts"><div><b>${t("f1b")}</b>${t("f1")}</div><div><b>${t("f2b")}</b>${t("f2")}</div><div><b>${t("f3b")}</b>${t("f3")}</div></div>
    ${revCard(REV[1])}<p class="small center" style="margin-top:14px">${S.a.length&&S.a.length<ALL.length?t("resume"):""}</p></section>`;
@@ -351,6 +360,14 @@ function calc(){
   return{sc,total,hrs:HRS[S.a[off+6]||0],ind:PROFILE[0].o[S.a[0]||0]};
 }
 const lvl=v=>v<40?0:v<75?1:2;
+function confetti(){
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  const w=document.querySelector(".flipwrap"),cols=["#2f5fb3","#7fa6ea","#d9a400","#e9c46a","#9a3b2a","#17202a"];
+  for(let i=0;i<70;i++){const c=document.createElement("i");c.className="cf";
+    const ang=Math.random()*Math.PI*2,d=120+Math.random()*220;
+    c.style.cssText=`--x:${Math.cos(ang)*d}px;--y:${Math.sin(ang)*d-120}px;--r:${Math.random()*720-360}deg;background:${cols[i%cols.length]};animation-delay:${Math.random()*.25+.35}s;width:${6+Math.random()*6}px;height:${8+Math.random()*8}px`;
+    w.appendChild(c);setTimeout(()=>c.remove(),2600)}
+}
 function result(){
   const r=calc(),ti=TIERS.reduce((a,x,i)=>r.total>=x[0]?i:a,0),tr=TIERS[ti],nm=L([tr[1],tr[2]]);
   const order=[...P].sort((a,b)=>r.sc[a.k]-r.sc[b.k]),top=order.slice(0,3),pk=PKG[ti],hasSite=S.lead.site&&!S.lead.nosite,qual=[0,2].includes(S.a[0]);
@@ -368,35 +385,36 @@ function result(){
   app.innerHTML=`<section class="screen center">
     <div class="ring"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="none" stroke="var(--line)" stroke-width="10"/><circle id="arc" cx="60" cy="60" r="52" fill="none" stroke="var(--acc)" stroke-width="10" stroke-linecap="round" stroke-dasharray="327" stroke-dashoffset="327"/></svg><b id="num">0</b><small>${t("of100")}</small></div>
     <p class="small">${esc(S.lead.biz||"")} · ${L(r.ind)}</p><h1>${esc(nm[0])}${en()?" ":""}<em>${esc(nm[1])}</em></h1><p class="lead">${L(tr[3])}</p></section>
-   <div class="card"><h3>${t("five")}</h3><div class="bars">${P.map(p=>`<div class="bar${r.sc[p.k]<40?" low":""}"><div class="t"><span>${L(p.n)}</span><b>${r.sc[p.k]}</b></div><div class="tr"><i style="width:${Math.max(r.sc[p.k],3)}%"></i></div></div>`).join("")}</div></div>
    <section class="sec"><p class="eyebrow">${t("bonusk")}</p><h2>${t("bonush")}</h2>
     <div class="flipwrap"><button class="flip${S.flipped?" open":""}" id="flip" aria-label="${t("tap")}">
-     <div class="face front"><img src="${IB}bluluma-icon-white.svg" alt=""><div><h3 style="color:inherit">${t("bonusfront")}</h3><p class="tap">${t("tap")} →</p></div></div>
+     <div class="face front"><img src="${IB}bluluma-icon-white.svg" alt=""><div><h3 style="color:inherit">${t("bonusfront")}</h3><p class="tap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 11V5a2 2 0 0 1 4 0v6"/><path d="M13 9a2 2 0 0 1 4 0v3"/><path d="M17 11a2 2 0 0 1 4 0v4a7 7 0 0 1-7 7h-1a7 7 0 0 1-6-3.5L4 15a2 2 0 0 1 3.4-2L9 15"/></svg>${t("tap")}</p></div></div>
      <div class="face back"><div><div class="amt">$300</div><div class="for">${en()?t("off")+" "+L(BONUS[bk]):"抵用券 · 用於你的"+L(BONUS[bk])}</div></div><div class="small">${t("valid")(exp)} ${t("fine")}</div></div>
     </button></div></section>
+   <section class="sec"><div class="card cta" id="cta">${S.req?`<h2>${t("done")}</h2><p>${t("donep")(esc(S.lead.email))}</p>${LIVE?"":`<p class="small">${t("demo2")}</p>`}`:`
+    ${qual?`<h2>${t("ctah")}</h2><p>${t(hasSite?"ctap1":"ctap0")}</p>${hasSite?`<p class="small">${esc(S.lead.site)}</p>`:""}`:`<h2>${t("ctah2")}</h2><p>${t("ctap2")}</p>`}
+    <span class="chip">$300 · ${L(BONUS[bk])}</span><p class="small">${t("ctabonus")} ${t("valid")(exp)}</p>
+    <form id="reqform"><label for="notes">${t("notes")}</label><textarea id="notes"></textarea>
+    <div style="margin-top:18px"><button class="btn" type="submit">${t(qual?"ctab1":"ctab2")}</button></div><p class="small" id="reqmsg" aria-live="polite"></p></form>
+    <p class="small">${t("ctas")}</p>`}</div></section>
+   <div class="card"><h3>${t("five")}</h3><div class="bars">${P.map(p=>`<div class="bar${r.sc[p.k]<40?" low":""}"><div class="t"><span>${L(p.n)}</span><b>${r.sc[p.k]}</b></div><div class="tr"><i style="width:${Math.max(r.sc[p.k],3)}%"></i></div></div>`).join("")}</div></div>
    <section class="sec" id="report">${report}</section>
    <section class="sec"><h2>${t("canh")}</h2><p class="lead">${t("canp")}</p>
     <div class="can">${CAN.map(c=>`<div><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICON[c[0]]}</svg><span><h3>${L(c[1])}</h3><p>${L(c[2])}</p></span></div>`).join("")}</div></section>
    <section class="sec"><div class="stats">${t("stat").map(s=>`<div><b>${s[0]}</b><span>${s[1]}</span></div>`).join("")}</div></section>
    <section class="sec"><h2>${t("caseh")}</h2><p class="small">${t("casep")}</p>
-    <div class="cases">${CASES.map(c=>`<figure><img src="img/${c[0]}.webp" alt="${c[1]} website" loading="lazy"><figcaption>${c[1]}<span>${L(c[2])}</span></figcaption></figure>`).join("")}</div></section>
+    <div class="cases">${CASES.map(c=>`<figure><img src="${IB}${c[0]}.webp" alt="${c[1]} website" loading="lazy"><figcaption>${c[1]}<span>${L(c[2])}</span></figcaption></figure>`).join("")}</div></section>
    <section class="sec"><h2>${t("revh")}</h2><div class="revs">${REV.map(revCard).join("")}</div></section>
-   <section class="sec"><div class="card cta" id="cta">${S.req?`<h2>${t("done")}</h2><p>${t("donep")(esc(S.lead.email))}</p>${LIVE?"":`<p class="small">${t("demo2")}</p>`}`:`
-    ${qual?`<h2>${t("ctah")}</h2><p>${t(hasSite?"ctap1":"ctap0")}</p>${hasSite?`<p class="small">${esc(S.lead.site)}</p>`:""}`:`<h2>${t("ctah2")}</h2><p>${t("ctap2")}</p>`}
-    <span class="chip">$300 · ${L(BONUS[bk])}</span><p class="small">${t("ctabonus")} ${t("valid")(exp)}</p>
-    <form id="reqform"><label class="check"><input type="checkbox" id="consent"><span>${t(qual?"ctac":"ctac2")}</span></label>
-    <label for="notes">${t("notes")}</label><textarea id="notes"></textarea>
-    <div style="margin-top:18px"><button class="btn" type="submit">${t("ctab")}</button></div><p class="small" id="reqmsg" aria-live="polite"></p></form>
-    <p class="small">${t("ctas")}</p>`}</div></section>`;
+`;
   let n=0;const step=()=>{if(view!=="result")return;n=Math.min(r.total,n+1);$("num").textContent=n;$("arc").style.strokeDashoffset=327-327*n/100;if(n<r.total)requestAnimationFrame(step)};step();
-  $("flip").onclick=()=>{if(S.flipped)return;S.flipped=true;save();$("flip").classList.add("open")};
+  $("flip").onclick=()=>{if(S.flipped)return;S.flipped=true;save();$("flip").classList.add("open");confetti();setTimeout(dk,1400)};
   const u=$("unlock");if(u)u.onclick=()=>{const pl=PAYLINK[S.lang];
     if(pl&&S.id){location.href=pl+"?client_reference_id="+encodeURIComponent(S.id)+"&prefilled_email="+encodeURIComponent(S.lead.email||"")+(S.lang==="zh"?"&locale=zh-TW":"");return}
     S.paid=true;save();const y=window.scrollY;result();window.scrollTo(0,y)};
-  const f=$("reqform");if(f)f.onsubmit=e=>{e.preventDefault();if(!$("consent").checked){$("reqmsg").textContent=t("need");return}
-    S.req={at:new Date().toISOString(),notes:$("notes").value.trim(),pkg:pk[0][0],score:r.total,bonus:bk};save();
+  const f=$("reqform");if(f)f.onsubmit=e=>{e.preventDefault();    S.req={at:new Date().toISOString(),notes:$("notes").value.trim(),pkg:pk[0][0],score:r.total,bonus:bk};save();
     if(S.id)api({action:"request",id:S.id,token:S.token,notes:S.req.notes}).catch(()=>{});const y=window.scrollY;result();window.scrollTo(0,y)};
-  dock(S.req?null:t("ctab").replace(/^Send my proposal$/,"Get my free proposal").replace(/^寄給我提案$/,"免費取得提案"),()=>$("cta").scrollIntoView({behavior:"smooth"}));
+  const dk=()=>dock(S.req||!S.flipped?null:t(qual?"ctab1":"ctab2"),()=>$("cta").scrollIntoView({behavior:"smooth",block:"start"}));dk();
+  if(window.ctaObs)ctaObs.disconnect();
+  window.ctaObs=new IntersectionObserver(es=>{const v=es[0].isIntersecting;$("dock").style.visibility=v?"hidden":""},{threshold:.15});ctaObs.observe($("cta"));
 }
 $("back").onclick=()=>{if(view==="lead"){S.i=ALL.length-1;go("quiz")}else if(view==="break"){go("quiz")}else if(view==="quiz"&&S.i>0){S.i--;const b=BREAKS[S.i];if(b){brk=b[0];go("break")}else go("quiz")}else if(view==="quiz")go("intro")};
 {const q=new URLSearchParams(location.search),cs=q.get("paid");
