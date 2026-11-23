@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Readiness Score · Bluluma</title>
+<meta name="description" content="Free 3-minute AI Readiness Score for business owners. See how your business scores on website, leads, automation, marketing and data, plus a $300 bonus matched to your biggest gap.">
+<meta property="og:title" content="Is your business ready for AI? · Bluluma">
+<meta property="og:description" content="17 quick questions. Your AI Readiness Score out of 100, your biggest gaps, and a personal $300 bonus.">
+<meta property="og:image" content="https://score.bluluma.com/img/og.jpg">
+<meta property="og:url" content="https://score.bluluma.com/en">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
+<link rel="alternate" hreflang="en" href="https://score.bluluma.com/en"><link rel="alternate" hreflang="zh-Hant" href="https://score.bluluma.com/zh">
+<!-- META PIXEL: paste Meta Pixel base code here when ads start (stage 3) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE: calm, confident business advisor — Bluluma Editorial Refined, mobile-first funnel
+   IDEA: a consultant's diagnostic, one question per screen, with breathers between chapters
+   PICTURE: the quiz card, then a score ring, a bonus card that flips, real client websites
+   COLOUR and TYPE: warm paper, ink, Bluluma blue; Instrument Serif + Inter, Noto Serif/Sans TC for 中文
+   LAYOUT: one 480px column on every screen, segmented progress on top, sticky action at the bottom */
+:root{color-scheme:light dark;
+--bg:light-dark(#f6f3ee,#0f1418);--card:light-dark(#fffdf9,#161d23);--ink:light-dark(#17202a,#ece7df);
+--mute:light-dark(#5d6670,#9aa3ab);--line:light-dark(#e2ddd4,#2a333b);--acc:light-dark(#2f5fb3,#7fa6ea);
+--accs:light-dark(#e9effa,#1b2a3b);--warn:light-dark(#9a3b2a,#e0907f);--onacc:light-dark(#fffdf9,#0f1418);
+--serif:"Instrument Serif",Georgia,serif;--sans:Inter,system-ui,sans-serif}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+:root[lang=zh-Hant]{--serif:"Noto Serif TC","Instrument Serif",serif;--sans:Inter,"Noto Sans TC",system-ui,sans-serif}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--sans);overflow-x:clip}
+:root[lang=zh-Hant] body{line-height:1.75}
+.wrap{max-width:480px;margin:0 auto;padding:0 18px 120px}
+header{position:sticky;top:0;z-index:5;background:var(--bg);padding:12px 0 10px}
+.hrow{display:grid;grid-template-columns:44px 1fr 44px;align-items:center}
+.logo{height:34px;width:auto;display:block;margin:0 auto}.lg-d{display:none}
+:root[data-theme=dark] .lg-l{display:none}:root[data-theme=dark] .lg-d{display:block;height:24px}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .lg-l{display:none}:root:not([data-theme=light]) .lg-d{display:block;height:24px}}
+.icon{width:44px;height:44px;border:0;background:transparent;color:var(--ink);cursor:pointer;border-radius:50%;display:grid;place-items:center}
+.icon[disabled]{visibility:hidden}
+.langb{font:600 13px var(--sans);color:var(--mute)}
+.segs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px;margin-top:10px}
+.segs i{height:4px;border-radius:2px;background:var(--line);overflow:hidden;position:relative}
+.segs i b{position:absolute;inset:0;background:var(--acc);transform-origin:left;transform:scaleX(var(--f,0));transition:transform .5s ease}
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.08;text-wrap:balance;margin:0}
+:root[lang=zh-Hant] :is(h1,h2,h3){font-weight:500;line-height:1.3}
+h1{font-size:clamp(34px,9vw,44px)}h2{font-size:clamp(26px,7vw,32px)}h3{font-size:22px}
+:root[lang=zh-Hant] h1{font-size:clamp(28px,8vw,38px)}:root[lang=zh-Hant] h2{font-size:clamp(23px,6.4vw,28px)}
+em{font-style:italic;color:var(--acc)}:root[lang=zh-Hant] em{font-style:normal}
+p{margin:.6em 0}.lead{font-size:17px;color:var(--mute)}
+.small{font-size:13px;color:var(--mute)}
+.center{text-align:center}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:22px;margin-top:18px}
+.btn{appearance:none;border:0;border-radius:6px;background:var(--acc);color:var(--onacc);font:600 16px var(--sans);padding:14px 22px;min-height:52px;cursor:pointer;width:100%}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn:focus-visible,.opt:focus-visible,input:focus-visible,textarea:focus-visible,.icon:focus-visible,.flip:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:6;background:linear-gradient(transparent,var(--bg) 30%);padding:24px 18px calc(16px + env(safe-area-inset-bottom))}
+.dock .btn{display:block;max-width:444px;margin:0 auto}
+.screen{animation:in .45s ease both}
+@keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.hero-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:22px 0 6px}
+.hero-strip img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center top;border-radius:6px;border:1px solid var(--line)}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:20px}
+.facts div{border-top:1px solid var(--line);padding-top:8px;font-size:13px;color:var(--mute)}
+.facts b{display:block;font-size:22px;color:var(--ink);font-family:"Instrument Serif",serif;font-weight:400}
+.qsec{font-size:13px;color:var(--acc);font-weight:600;margin-top:18px}
+.cheer{font-size:13px;color:var(--mute);min-height:20px}
+.opts{display:grid;gap:10px;margin-top:20px}
+.opt{text-align:left;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:14px 16px;min-height:56px;font:16px var(--sans);color:var(--ink);cursor:pointer;transition:border-color .15s,transform .15s}
+.opt:hover{border-color:var(--acc)}.opt.on{border-color:var(--acc);background:var(--accs);transform:scale(.99)}
+.chips{grid-template-columns:repeat(2,minmax(0,1fr))}.chips .opt{font-size:15px;min-height:64px}
+label{display:block;font-size:14px;color:var(--mute);margin:16px 0 6px}
+input,textarea{width:100%;font:16px var(--sans);padding:13px 14px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);min-height:50px}
+textarea{min-height:90px;resize:vertical}
+.check{display:flex;gap:10px;align-items:flex-start;color:var(--ink);font-size:15px;margin-top:12px;cursor:pointer}
+.check input{width:20px;height:20px;min-height:0;margin-top:3px;flex:none;accent-color:var(--acc)}
+.done{width:96px;height:96px;margin:30px auto 18px;display:block}
+.done circle{stroke:var(--acc);stroke-dasharray:283;stroke-dashoffset:283;animation:draw .8s ease forwards}
+.done path{stroke:var(--acc);stroke-dasharray:60;stroke-dashoffset:60;animation:draw .4s .7s ease forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.pct{font:400 15px var(--sans);color:var(--acc);font-weight:600}
+.quote{font-size:15px}.quote p{margin:10px 0}.who{font-size:13px;color:var(--mute)}
+.stars{color:#d9a400;letter-spacing:2px;font-size:15px}
+.case img{width:100%;border-radius:6px;display:block;border:1px solid var(--line)}
+.case p{margin:8px 0 0;font-size:14px;color:var(--mute)}
+.ring{position:relative;width:180px;height:180px;margin:24px auto 8px}.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font:400 58px "Instrument Serif",serif}
+.ring small{position:absolute;left:0;bottom:40px;width:100%;text-align:center;color:var(--mute);font-size:12px}
+.steps{list-style:none;padding:0;margin:20px 0 0}
+.steps li{display:flex;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line);color:var(--mute);transition:color .3s}
+.steps li i{width:20px;height:20px;border-radius:50%;border:2px solid var(--line);flex:none;display:grid;place-items:center;font-style:normal;font-size:12px;color:var(--onacc)}
+.steps li.ok{color:var(--ink)}.steps li.ok i{background:var(--acc);border-color:var(--acc)}
+.bars{display:grid;gap:14px;margin-top:10px}
+.bar .t{display:flex;justify-content:space-between;gap:12px;font-size:15px}
+.bar .tr{height:8px;background:var(--line);border-radius:4px;margin-top:6px;overflow:hidden}
+.bar .tr i{display:block;height:100%;background:var(--acc);transform-origin:left;animation:grow .9s ease both}
+@keyframes grow{from{transform:scaleX(0)}}
+.bar.low .tr i{background:var(--warn)}
+.flipwrap{perspective:1200px;margin-top:18px}
+.flip{position:relative;width:100%;aspect-ratio:1.55;border:0;padding:0;background:transparent;cursor:pointer;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.2,.8,.2,1);display:block;font:inherit;color:inherit}
+.flip.open{transform:rotateY(180deg);cursor:default}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:10px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;text-align:left;overflow:hidden}
+.front{background:var(--acc);color:var(--onacc)}
+.front::after{content:"";position:absolute;right:-40px;bottom:-40px;width:180px;height:180px;border:1px solid currentColor;border-radius:50%;opacity:.25}
+.front img{width:40px;height:40px}
+.front .tap{font-size:14px;opacity:.85}
+.back{transform:rotateY(180deg);background:var(--card);border:1.5px dashed var(--acc)}
+.back .amt{font:400 64px/1 "Instrument Serif",serif;color:var(--acc)}
+.back .for{font-weight:600;font-size:17px}
+.locked{position:relative}.locked .blur{filter:blur(7px);user-select:none;pointer-events:none;max-height:760px;overflow:hidden}
+.pay{position:absolute;inset:0;display:grid;place-items:center}
+.pay .card{text-align:center;box-shadow:0 18px 50px rgba(0,0,0,.14);margin:0}
+.price{font:400 56px "Instrument Serif",serif;line-height:1}
+ul.tick{padding:0;list-style:none;text-align:left;margin:14px 0}
+ul.tick li{padding:7px 0 7px 26px;position:relative;border-bottom:1px solid var(--line);font-size:15px}
+ul.tick li::before{content:"";position:absolute;left:4px;top:15px;width:10px;height:6px;border:2px solid var(--acc);border-top:0;border-right:0;transform:rotate(-45deg)}
+.pillar{border-top:1px solid var(--line);padding:18px 0}
+.pillar .lvl{font-size:13px;color:var(--mute)}
+.plan{display:grid;gap:12px}
+.plan div{border-top:1px solid var(--line);padding-top:10px}
+.plan b{font-family:var(--serif);font-weight:400;font-size:20px;color:var(--acc);display:block}
+.pkg{border:1px solid var(--acc);background:var(--accs)}
+.eyebrow{font-size:13px;color:var(--acc);font-weight:600;margin:0 0 6px}
+.sec{margin-top:44px}
+.can{display:grid;gap:12px;margin-top:18px}
+.can div{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:18px;display:grid;grid-template-columns:40px minmax(0,1fr);gap:14px}
+.can svg{width:40px;height:40px;color:var(--acc)}
+.can h3{font-size:20px}.can p{margin:4px 0 0;font-size:15px;color:var(--mute)}
+.cases{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}
+.cases figure{margin:0}.cases img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:6px;border:1px solid var(--line);display:block}
+.cases figcaption{font-size:13px;margin-top:6px;line-height:1.35}.cases figcaption span{display:block;color:var(--mute);font-size:12px}
+.revs{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:18px -18px 0;padding:0 18px 8px}
+.revs .card{flex:0 0 86%;scroll-snap-align:start;margin:0}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:18px;text-align:center}
+.stats b{display:block;font:400 clamp(24px,7.5vw,34px)/1.2 "Instrument Serif","Noto Serif TC",serif;color:var(--acc);white-space:nowrap}
+.stats span{font-size:13px;color:var(--mute)}
+.cta{background:var(--acc);color:var(--onacc);border:0}
+.cta h2 em{color:inherit;opacity:.85}.cta .btn{background:var(--onacc);color:var(--acc)}
+.cta .small,.cta label{color:inherit;opacity:.85}.cta .check{color:inherit}
+.cta textarea{background:var(--onacc);color:var(--ink)}
+.chip{display:inline-block;background:var(--onacc);color:var(--acc);border-radius:4px;padding:4px 10px;font-size:13px;font-weight:600;margin-top:6px}
+.spin{width:44px;height:44px;border:3px solid var(--line);border-top-color:var(--acc);border-radius:50%;animation:s 1s linear infinite;margin:10px auto 18px}
+@keyframes s{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01s!important;transition-duration:.01s!important}}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="hrow">
+    <button class="icon" id="back" aria-label="Back"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <a href="https://bluluma.com" aria-label="Bluluma Design"><img class="logo lg-l" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA1MzIgMjExLjg2Ij4KICA8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMjkuOC4zLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogMi4xLjEgQnVpbGQgMykgIC0tPgogIDxkZWZzPgogICAgPHN0eWxlPgogICAgICAuc3QwIHsKICAgICAgICBmaWxsOiAjNjM2NTY5OwogICAgICB9CgogICAgICAuc3QxIHsKICAgICAgICBmaWxsOiAjMzgzODM4OwogICAgICB9CgogICAgICAuc3QyIHsKICAgICAgICBpc29sYXRpb246IGlzb2xhdGU7CiAgICAgIH0KCiAgICAgIC5zdDMgewogICAgICAgIGZpbGw6ICM1ODg3ZGE7CiAgICAgIH0KICAgIDwvc3R5bGU+CiAgPC9kZWZzPgogIDxnIGNsYXNzPSJzdDIiPgogICAgPGcgY2xhc3M9InN0MiI+CiAgICAgIDxwYXRoIGNsYXNzPSJzdDMiIGQ9Ik0yNjIuODYsODUuNjljMCw0LjQxLTEuNTYsOC4xNC00LjY4LDExLjIxLTMuMTIsMy4wNy02Ljg5LDQuNi0xMS4yOSw0LjZoLTM3Ljk4di01OC40OGgzNi40OGM0LjI5LDAsOC4wMiwxLjI1LDExLjE3LDMuNzYsMy4xNSwyLjUxLDQuOTUsNS44LDUuNCw5Ljg3LjA1LjMzLjA4LjY3LjA4LDF2MWMwLDMuMTItLjc1LDUuODctMi4yNiw4LjI0LTEuNTEsMi4zNy0zLjc2LDQuMjMtNi43OCw1LjU2LDMuMDcsMS4xMiw1LjQ4LDIuODIsNy4yNCw1LjEsMS43NiwyLjI5LDIuNjQsNC45OSwyLjY0LDguMTJaTTI0Ny43Miw4NS4xYzAtMS45NS0uNjEtMy42NC0xLjg0LTUuMDYtMS4yMy0xLjQyLTIuNzktMi4xMy00LjY5LTIuMTNoLTE5Ljc0djEzLjY0aDIwLjE2YzEuNzgsMCwzLjI1LS42Myw0LjM5LTEuODgsMS4xNC0xLjI1LDEuNzItMi43NywxLjcyLTQuNTZaTTI0Ni45Nyw2MS40M2MwLTIuMDEtLjYzLTMuNzQtMS44OC01LjE5LTEuMjUtMS40NS0yLjg2LTIuMTgtNC44MS0yLjE4aC0xOC40OXYxMy45N2wxOS4yNC4wOGMxLjczLDAsMy4xNS0uNjYsNC4yNy0xLjk3LDEuMTEtMS4zMSwxLjY3LTIuODksMS42Ny00LjczWiIvPgogICAgICA8cGF0aCBjbGFzcz0ic3QzIiBkPSJNMjgxLjQ0LDEwMS41aC0xMS44di01OC40OGgxMS44djU4LjQ4WiIvPgogICAgICA8cGF0aCBjbGFzcz0ic3QzIiBkPSJNMzMwLjEyLDEwMS41aC0yMi4yNWMtNC4wNywwLTYuOTQtLjE5LTguNjItLjU5LTIuNzktLjY3LTUuMDItMi4xMi02LjY5LTQuMzUtMS45LTIuNTctMi44NC01LjQ5LTIuODQtOC43OXYtMjkuNjJoMTEuNjN2MjguN2MwLDEuMzkuNjEsMi41OSwxLjg0LDMuNiwxLjIzLDEsMi41NCwxLjUxLDMuOTMsMS41MWgxMS4zOHYtMzMuOGgxMS42M3Y0My4zNFoiLz4KICAgIDwvZz4KICAgIDxnIGNsYXNzPSJzdDIiPgogICAgICA8cGF0aCBjbGFzcz0ic3QwIiBkPSJNMzUwLjI5LDEwMS41aC0xMS44di01OC40OGgxMS44djU4LjQ4WiIvPgogICAgICA8cGF0aCBjbGFzcz0ic3QwIiBkPSJNMzk4Ljk4LDEwMS41aC0yMi4yNWMtNC4wNywwLTYuOTQtLjE5LTguNjItLjU5LTIuNzktLjY3LTUuMDItMi4xMi02LjY5LTQuMzUtMS45LTIuNTctMi44NC01LjQ5LTIuODQtOC43OXYtMjkuNjJoMTEuNjN2MjguN2MwLDEuMzkuNjEsMi41OSwxLjg0LDMuNiwxLjIzLDEsMi41NCwxLjUxLDMuOTMsMS41MWgxMS4zOHYtMzMuOGgxMS42M3Y0My4zNFoiLz4KICAgICAgPHBhdGggY2xhc3M9InN0MCIgZD0iTTQ2OS41OSwxMDEuNWgtMTEuMjl2LTI3LjEyYzAtMS4wNi0uMTEtMS44OS0uMzMtMi41LS4yMi0uNjEtLjY3LTEuMjctMS4zNC0xLjk2LS42Ny0uNy0xLjM0LTEuMi0yLjAxLTEuNS0uNjctLjMxLTEuNDUtLjQ2LTIuMzQtLjQ2aC04LjI4djMzLjU1aC0xMS40NnYtMzMuOGgtMTMuMzh2MzMuOGgtMTEuOHYtNDMuMzRoNDYuNDNjMi45LDAsNS4xOS4yNyw2Ljg2Ljc5LDEuNjcuNTMsMy4zMiwxLjY2LDQuOTQsMy4zOCwxLjI4LDEuMzksMi4yNywyLjc2LDIuOTcsNC4wOXMxLjA1LDIuNzgsMS4wNSw0LjM0djMwLjczWiIvPgogICAgICA8cGF0aCBjbGFzcz0ic3QwIiBkPSJNNTIwLjQ1LDEwMS41aC0zMS4yOWMtMy41MSwwLTYuNTEtMS4xOC04Ljk5LTMuNTQtMi40OC0yLjM2LTMuNzItNS4zNS0zLjcyLTguOTZzMS4xMy02LjkxLDMuMzgtOS4zOGMyLjI1LTIuNDcsNS4wOC0zLjcxLDguNDctMy43MWgyMC4xOXYtMi4zNGMwLS43Mi0uMTMtMS4zNS0uMzgtMS44OC0uMjUtLjUzLS42NS0xLjE2LTEuMjEtMS44OC0uNzgtLjg5LTEuNTgtMS40Ni0yLjQyLTEuNzFzLTItLjM4LTMuNS0uMzhoLTIxLjYxdi05LjU0aDIyLjE3YzQuMDcsMCw3LjExLjM1LDkuMTIsMS4wNCwyLjAxLjcsMy43NCwxLjc0LDUuMTksMy4xMywxLjg0LDEuODQsMy4wNywzLjg0LDMuNjgsNi4wMS42MSwyLjE3LjkyLDQuOTYuOTIsOC4zNXYyNC44Wk01MDguNDksOTIuNjN2LTguNDVoLTE0LjcyYy0xLjM5LDAtMi41OC40LTMuNTYsMS4yLS45OC44LTEuNDYsMS44Ni0xLjQ2LDMuMTksMCwxLjE2LjQ3LDIuMTMsMS40MiwyLjkuOTUuNzcsMi4wNCwxLjE2LDMuMjYsMS4xNmgxNS4wNloiLz4KICAgIDwvZz4KICA8L2c+CiAgPHBhdGggY2xhc3M9InN0MCIgZD0iTTE4MS40NywxMDguNzhsLjAyLTQ2LjI3YzAtLjg0LS4yMy0xLjY1LS42NC0yLjM1LS40LS43LS45OC0xLjMtMS43LTEuNzJsLTM3LjMtMjEuNTItNDIuODUtMjQuNzZjLS43My0uNDItMS41NC0uNjItMi4zNS0uNjJoLS4wM2MtLjgsMC0xLjYuMjEtMi4zMi42MmwtNDIuOTEsMjQuNzlMMTQuMTUsNTguNDRjLS43Mi40Mi0xLjMsMS4wMS0xLjcsMS43MiwwLDAtLjAyLjAyLS4wMi4wMy0uMDYuMS0uMDguMjEtLjEzLjMxLS4xMy4yNi0uMjUuNTItLjMzLjgtLjA0LjE0LS4wMy4yOS0uMDYuNDMtLjA0LjI1LS4xLjUtLjEuNzZoMHYuMDJsLjAyLDQ2LjI3LS4wMiw0Ni4yN2MwLC44NC4yMywxLjY1LjY0LDIuMzV2LjAyYy40LjY5Ljk4LDEuMjgsMS42OSwxLjY5bDc3LjYsNDQuODEsMi41NSwxLjQ3Yy43Mi40MSwxLjUyLjYyLDIuMzIuNjJoLjA2Yy44LDAsMS42LS4yMSwyLjMyLS42Mmw0Mi45MS0yNC43OSwzNy4yNC0yMS40OGMuNzItLjQyLDEuMy0xLjAxLDEuNy0xLjcyLjQxLS43LjY0LTEuNTEuNjQtMi4zNWwtLjAyLTQ2LjI3aC4wMVpNMTcyLjE5LDE1Mi40bC0zNi4zMywyMC45OS0zNC42MiwxOS45N1YyNC4xOWwzNC41NiwxOS45NCwzNi4zOSwyMS4wMi4wMiw0My42Mi0uMDIsNDMuNjJoMFpNMjEuMDksNzAuNjFsNjUuMDEsMzguMTctNjUuMDEsMzguMjN2LTM4LjIzczAtMzguMTcsMC0zOC4xN1pNOTEuOTgsMjQuMjJ2NzcuMjdMMjUuNjMsNjIuNTNsMzIuODMtMTguOTcsMzMuNTMtMTkuMzRoMFpNMjUuNjgsMTU1LjA1bDY2LjMtMzguOTl2NzcuMjdsLTM0LjQtMTkuODUtMzEuOS0xOC40M2gwWiIvPgogIDxwYXRoIGNsYXNzPSJzdDMiIGQ9Ik05Ni42NywyMDYuMDFjLS44LDAtMS42LS4yMS0yLjMyLS42Mi0xLjQzLS44My0yLjMyLTIuMzUtMi4zMi00LjAxVjE2LjE3YzAtMS42Ni44OC0zLjE4LDIuMzItNC4wMSwxLjQzLS44MywzLjItLjgzLDQuNjMsMGw4MC4xOCw0Ni4zM2MxLjQzLjgyLDIuMzEsMi4zNSwyLjMxLDMuOTlzLS44NiwzLjE3LTIuMjksNC4wMWwtNzIuMDEsNDIuMjksNzEuOTgsNDIuMzNjMS40Mi44NCwyLjI5LDIuMzYsMi4yOCw0LjAxLDAsMS42NS0uODksMy4xNy0yLjMyLDMuOTlsLTgwLjE1LDQ2LjI4Yy0uNzIuNDEtMS41Mi42Mi0yLjMyLjYyaC4wM1pNMTAxLjMsMTE2LjA2djc3LjNsNjYuMzMtMzguMjktNjYuMzMtMzkuMDFoMFpNMTAxLjMsMjQuMnY3Ny4zbDY2LjM1LTM4Ljk2TDEwMS4zLDI0LjJaIi8+CiAgPGcgY2xhc3M9InN0MiI+CiAgICA8ZyBjbGFzcz0ic3QyIj4KICAgICAgPHBhdGggY2xhc3M9InN0MSIgZD0iTTIxMC4wNiwxNTcuNjdsLTEuMDYtMy4zYy4wOS0uMDkuMTgtLjE4LjI2LS4yNi43LS43OSwxLjE5LTEuNTQsMS40NS0yLjI0LDEuMDYtMS45MywyLjA3LTQuMzEsMy4wNC03LjEzbDMuOTYsMS4zMmMtMS40MSwyLjY0LTIuOSw1LjI4LTQuNDksNy45MmguNzljLjYxLS4wOSwxLjA2LS4xMywxLjMyLS4xMy4yNi0uNDQuNjEtMS4xLDEuMDYtMS45OC40NC0uODguNzktMS41NCwxLjA2LTEuOThsMi43NywxLjMydi01LjE1aDE5LjkzdjI1Ljc0Yy4wOSwyLjczLTEuMTksNC4xMy0zLjgzLDQuMjJoLTEuNzJjLS45Ny4wOS0xLjc2LjEzLTIuMzguMTMtLjI2LTEuMzItLjU3LTIuNi0uOTItMy44M2gzLjQzYzEuMTQuMDksMS42Ny0uNCwxLjU4LTEuNDV2LTIwLjg1aC0xMi4yOHYyNi4yN2gtMy44M3YtMTAuNjlsLTIuNjQuOTItLjI2LTEuMTljLTEuNzYuMDktMy4yNi4yMi00LjQ5LjQtLjg4LjA5LTEuNjcuMjItMi4zOC40bC0xLjA2LTMuNDNjLjk3LS44OCwxLjcyLTEuOCwyLjI0LTIuNzcuMDktLjA5LjIyLS4zMS40LS42Ni4zNS0uMzUuNzktMS4wMSwxLjMyLTEuOTgtMS40MS4wOS0yLjUxLjIyLTMuMy40Wk0yMTEuOSwxNzUuMzVsLTIuOS0uNTNjLjQ0LTIuNDYuODMtNS4wMiwxLjE5LTcuNjZsMi43Ny4yNmMtLjI2LDIuNzMtLjYyLDUuMzctMS4wNiw3LjkyWk0yMTMuNzUsMTc0LjgyYzAtMS41OC0uMDktMy44My0uMjYtNi43MywwLC4xOCwwLS4wNCwwLS42NmwyLjExLS4yNmMuMzUsMi4zOC42MSw0LjguNzksNy4yNmwtMi42NC40Wk0yMTYuMjYsMTYyLjE1Yy0uMDktLjM1LS4yMi0uODMtLjQtMS40NS0uMTgtLjQ0LS4zMS0uNzktLjQtMS4wNi0uMTguMjYtLjQ0LjcxLS43OSwxLjMyLS40NC41My0uNzUuOTctLjkyLDEuMzIuNjEtLjA5LDEuNDUtLjEzLDIuNTEtLjEzWk0yMTguMjQsMTU4Ljk5Yy45NywyLjczLDEuNjMsNC43NSwxLjk4LDYuMDd2LTEyLjhjLS44OCwxLjUtMi4xNiwzLjQ4LTMuODMsNS45NC0uNDQuNjItLjc1LDEuMS0uOTIsMS40NWwyLjc3LS42NlpNMjE3Ljg0LDE3My45Yy0uNDQtMi4zOC0uOTctNC42Mi0xLjU4LTYuNzNsMi4yNC0uNGMuMjYuODguNTcsMi4wNy45MiwzLjU2LjI2LDEuNDEuNDgsMi4zOC42NiwyLjlsLTIuMjQuNjZaTTIyNC44NCwxNTcuOTN2LTMuNDNoMS41OGMtLjM1LS44OC0uNzktMS45My0xLjMyLTMuMTdsMy40My0uNjZjLjE4LjQ0LjQ0LDEuMDYuNzksMS44NS4yNi44OC40OCwxLjU0LjY2LDEuOThoLjRjLjUzLTEuMzIuOTctMi41OSwxLjMyLTMuODNsMy40My42NmMtLjA5LjI2LS4yMi42Mi0uNCwxLjA2LS4zNS45Ny0uNjYsMS42Ny0uOTIsMi4xMWgxLjU4djMuNDNoLTEwLjU2Wk0yMjQuODQsMTY0LjEzdi0zLjQzaDMuN2MtLjI2LS43LS41My0xLjMyLS43OS0xLjg1bDQuMjItLjY2LjY2LDIuNTFoMi43N3YzLjQzaC01LjY4djMuNDNoNS4xNXYzLjQzaC04Ljg0di02Ljg2aC0xLjE5WiIvPgogICAgICA8cGF0aCBjbGFzcz0ic3QxIiBkPSJNMjU2LjE4LDE0OS44OHYtMy44M2gzMC42MnYzLjgzaC0xMy42bC0uNjYsMS44NWgxMi4wMXYxOC40OGgtOS4yNGM1LjI4LDEuMTQsOS4xOSwxLjk0LDExLjc1LDIuMzhsLTEuNDUsMy45NmMtMS43Ni0uNDQtNC43MS0xLjE5LTguODQtMi4yNC0xLjc2LS40NC0zLjA0LS43NS0zLjgzLS45MmwxLjQ1LTMuMTdoLTYuMDdsMS43MiwzLjE3Yy0zLjcsMS4wNi03LjgzLDIuMTYtMTIuNDEsMy4zLS4wOS0uMTgtLjIyLS41My0uNC0xLjA2LS42Mi0xLjMyLTEuMS0yLjMzLTEuNDUtMy4wNCw0LjEzLS43LDcuODctMS41LDExLjIyLTIuMzhoLTguNTh2LTE4LjQ4aDguODRsLjUzLTEuODVoLTExLjYyWk0yNjMuMzEsMTU1LjI5djEuNzJoMTYuMzd2LTEuNzJoLTE2LjM3Wk0yNjMuMzEsMTYwLjA0djEuODVoMTYuMzd2LTEuODVoLTE2LjM3Wk0yNjMuMzEsMTY0LjkydjEuNzJoMTYuMzd2LTEuNzJoLTE2LjM3WiIvPgogICAgICA8cGF0aCBjbGFzcz0ic3QxIiBkPSJNMzI0LjA5LDE1Ni4yMXYtMy43aDMuNDN2LTIuNjRoLTQuMDl2LTMuODNoOC40NXYxOS4xNGgxLjQ1djQuMDloLTMxLjI4di00LjA5aDEuNzJ2LTE4LjA4YzIuNjQtLjUzLDUuMDYtMS4xOSw3LjI2LTEuOThsMS41OCwzLjQzYy0xLjA2LjQ0LTIuNTUuODgtNC40OSwxLjMydjIuMzhoMy43djMuN2gtMy43djIuNjRoMy44M3YzLjdoLTMuODN2Mi45aDUuMDJ2LTYuMmgzLjk2djYuMmgxLjcydi03LjY2aC01LjY4di0xMi41NGg0LjIydjIuNzdoNS4yOHYzLjdoLTUuMjh2Mi4zOGg1LjU0djExLjM1aDQuNjJ2LTIuNjRoLTMuNDN2LTMuN2gzLjQzdi0yLjY0aC0zLjQzWk0zMDQuMTYsMTc2LjU0Yy0uOTctMi4xMS0xLjYzLTMuNDMtMS45OC0zLjk2LDIuNjQtLjUzLDYuMzgtMS42MywxMS4yMi0zLjNsMi4yNCwzLjQzYy00LjMxLDEuNTgtOC4xNCwyLjg2LTExLjQ4LDMuODNaTTMzMS42MSwxNzYuNTRjLTQuMjItMS41LTguMTgtMi43My0xMS44OC0zLjdsMS43Mi0zLjQzYzEuMzIuMzUsMy4xNy44NCw1LjU0LDEuNDUsMi42NC43MSw0Ljc1LDEuMjgsNi4zMywxLjcybC0xLjcyLDMuOTZaIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik0zNDkuNzUsMTUwLjh2LTQuNDloMjguNTF2NC40OWgtMTEuNzV2MTEuMjJoMTMuMzN2NC42MmgtMTMuMzN2OS43N2gtNS4xNXYtOS43N2gtMTMuMnYtNC42MmgxMy4ydi0xMS4yMmgtMTEuNjJaTTM1NS42OSwxNjEuMjNjLTEuODUtMi4yOS0zLjc0LTQuNDQtNS42Ny02LjQ3bDMuNDMtMi43N2MxLjg1LDEuNjcsMy44MywzLjc0LDUuOTQsNi4ybC0zLjcsMy4wNFpNMzcxLjkzLDE2MS4yM2wtMy41Ni0zLjA0YzEuNS0xLjQxLDMuMy0zLjM0LDUuNDEtNS44MS0uMDkuMTguMDQuMDQuNC0uNGwzLjcsMi42NGMtMi4yLDIuNjQtNC4xOCw0Ljg0LTUuOTQsNi42WiIvPgogICAgICA8cGF0aCBjbGFzcz0ic3QxIiBkPSJNMzk0LjQzLDE1MC40MXYtNC4yMmgzMS41NXY0LjIyaC0xMy43M2wtLjc5LDIuNTFoMTMuMnYyMy4zNmgtNC42MnYtMS45OGgtMTkuNTN2MS44NWgtNC43NXYtMjMuMjNoMTAuMjlsLjY2LTIuNTFoLTEyLjI4Wk00MDAuNSwxNTYuODd2MTMuNzNoMy4wNHYtMTMuNzNoLTMuMDRaTTQwNy44OSwxNTYuODd2Mi4zOGg0LjYydi0yLjM4aC00LjYyWk00MDcuODksMTYyLjQydjIuNTFoNC42MnYtMi41MWgtNC42MlpNNDA3Ljg5LDE2OC4yMnYyLjM4aDQuNjJ2LTIuMzhoLTQuNjJaTTQyMC4wNCwxNTYuODdoLTMuMTd2MTMuNzNoMy4xN3YtMTMuNzNaIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik00NDAuNTYsMTUxLjg2di0zLjk2aDQuNDlsLS42Ni0yLjY0LDQuNzUtLjQuNjYsMy4wNGgzLjk2djMuOTZoLTEzLjJaTTQ0MS4zNSwxNTd2LTMuNTZoMTEuNjJ2My41NmgtMTEuNjJaTTQ0MS4zNSwxNjIuMTV2LTMuNTZoMTEuNjJ2My41NmgtMTEuNjJaTTQ1NC41NSwxNzYuNDFjLS40NC0uOTctMS4wMS0yLjA3LTEuNzItMy4zdjIuMzhoLTMuODN2LTEuNDVoLTMuNTZ2MS43MmgtMy45NnYtMTIuMDFoMTEuMzV2OC41OGMyLjQ2LS43OSw0LjQ5LTEuNTgsNi4wNy0yLjM4LTEuNS0xLjY3LTIuOS0zLjYxLTQuMjItNS44MWwzLjA0LTEuODVoLTMuNTZ2LTQuMjJoMTcuMDN2NC40OWMtMS4zMiwyLjktMi45NSw1LjMzLTQuODgsNy4yNiwxLjc2Ljg4LDMuODcsMS42Nyw2LjM0LDIuMzgtLjM1LjQ0LS44NCwxLjI3LTEuNDUsMi41MS0uMzUuNy0uNjIsMS4xOS0uNzksMS40NS0zLjA4LS45Ny01LjY4LTIuMTEtNy43OS0zLjQzLTIuMiwxLjQxLTQuODgsMi42NC04LjA1LDMuN1pNNDQ1LjQ0LDE2Ny41NnYzLjA0aDMuNTZ2LTMuMDRoLTMuNTZaTTQ1Ni41MywxNTcuOGMtMS41LTEuNS0yLjY0LTIuNTUtMy40My0zLjE3LDIuMjktMS4yMywzLjM0LTIuODYsMy4xNy00Ljg4di0zLjgzaDEyLjY3djUuMDJjLS4wOSwxLjE0LjQsMS42NywxLjQ1LDEuNTguODguNTMsMS42My41MywyLjI0LDAtLjA5LjQ0LS4xOCwxLjEtLjI2LDEuOTgtLjE4Ljk3LS4zMSwxLjY3LS40LDIuMTEtLjk3LjUzLTIuMTYuNTMtMy41NiwwLTIuNTUsMC0zLjgzLTEuMjgtMy44My0zLjgzdi0yLjY0aC0zLjk2di41M2MuMTgsMi42NC0xLjE5LDUuMDItNC4wOSw3LjEzWk00NjYuMjksMTYyLjI5aC03LjUyYzEuMzIsMS45NCwyLjU5LDMuNTYsMy44Myw0Ljg4LDEuNDEtMS4zMiwyLjY0LTIuOTUsMy43LTQuODhaIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik00ODYuODEsMTUxLjk5di00LjA5aDQuODhjLS4yNi0xLjA2LS41My0xLjk4LS43OS0yLjc3bDUuMDItLjQuNjYsMy4xN2g0Ljg4djQuMDloLTE0LjY1Wk00ODcuNzQsMTU3LjE0di0zLjdoMTIuNjd2My43aC0xMi42N1pNNDg3Ljc0LDE2Mi4yOXYtMy41NmgxMi42N3YzLjU2aC0xMi42N1pNNDg3Ljg3LDE3Ni4yOHYtMTIuNDFoMTIuNTR2MTIuMjhoLTQuMjJ2LTEuNDVoLTQuMDl2MS41OGgtNC4yMlpNNDkyLjA5LDE2Ny43djMuM2g0LjA5di0zLjNoLTQuMDlaTTUwMS43MywxNTkuOTF2LTQuNjJoNS45NHYtMTAuNDNoNC44OHYxMC40M2g2LjJ2NC42MmgtNi4ydjE2LjM3aC00Ljg4di0xNi4zN2gtNS45NFoiLz4KICAgIDwvZz4KICA8L2c+CiAgPGcgY2xhc3M9InN0MiI+CiAgICA8ZyBjbGFzcz0ic3QyIj4KICAgICAgPHBhdGggY2xhc3M9InN0MCIgZD0iTTIxNC4wMiwxMjYuODNsLjM3LDIuNDdoLjA4cy41My0yLjQ3LjUzLTIuNDdsMy42My0xMi45M2gyLjM2bDMuNjUsMTIuOTMuNTQsMi41NGguMDhsLjM5LTIuNTQsMi45NS0xMi45M2gyLjY4bC00Ljc3LDE5Ljc4aC0yLjM5bC0zLjktMTMuNzItLjM1LTEuNzhoLS4wOGwtLjM0LDEuNzgtMy45NywxMy43MmgtMi4zOWwtNC43NS0xOS43OGgyLjY2bDMuMDIsMTIuOTNaIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0yNDYuNjQsMTI0LjUxaC05LjA2djcuMDZoMTAuNDV2Mi4xMWgtMTMuMTJ2LTE5Ljc4aDEyLjk3djIuMTFoLTEwLjN2Ni40aDkuMDZ2Mi4xMVoiLz4KICAgICAgPHBhdGggY2xhc3M9InN0MCIgZD0iTTI1MS40NCwxMzMuNjh2LTE5Ljc4aDYuNDVjMi4wNiwwLDMuNjguNDUsNC44NSwxLjM0LDEuMTcuODksMS43NSwyLjIzLDEuNzUsNC4wMSwwLC44OC0uMjgsMS42Ni0uODQsMi4zNnMtMS4zLDEuMjEtMi4yMSwxLjU0YzEuMi4yNSwyLjEzLjg0LDIuODIsMS43NS42OC45MiwxLjAzLDEuOTgsMS4wMywzLjE5LDAsMS44MS0uNTksMy4xOS0xLjc2LDQuMTUtMS4xNy45Ni0yLjc2LDEuNDMtNC43NywxLjQzaC03LjMxWk0yNTQuMTIsMTIyLjMxaDQuMzNjMSwwLDEuODEtLjI3LDIuNDMtLjgyLjYyLS41NS45NC0xLjMxLjk0LTIuMjksMC0xLjA3LS4zNC0xLjg3LTEuMDEtMi40LS42Ny0uNTMtMS42NS0uNzktMi45MS0uNzloLTMuNzh2Ni4zWk0yNTQuMTIsMTI0LjQydjcuMTZoNC42M2MxLjIxLDAsMi4xNi0uMywyLjg0LS45LjY4LS42LDEuMDItMS40NSwxLjAyLTIuNTVzLS4yOC0yLjA2LS44NS0yLjcyYy0uNTctLjY2LTEuNDQtLjk5LTIuNjEtLjk5aC01LjAzWiIvPgogICAgICA8cGF0aCBjbGFzcz0ic3QwIiBkPSJNMjc2Ljc1LDEzNS4zOGgtMi4yOGw4LjI2LTIxLjQ4aDIuMjdsLTguMjUsMjEuNDhaIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0zMTAuMDUsMTMxLjA2Yy0uNDcuNzItMS4yOSwxLjM5LTIuNDUsMi0xLjE2LjYxLTIuNjcuOTEtNC41Mi45MS0yLjM2LDAtNC4zMi0uNzYtNS44Ni0yLjI3LTEuNTQtMS41MS0yLjMyLTMuNDctMi4zMi01Ljg3di00LjA4YzAtMi40LjcyLTQuMzYsMi4xNi01Ljg3LDEuNDQtMS41MSwzLjMtMi4yNyw1LjU3LTIuMjdzNC4wNC41Niw1LjM0LDEuNjdjMS4yOSwxLjExLDEuOTYsMi41NSwxLjk4LDQuMzFsLS4wMy4wOGgtMi41NWMtLjA4LTEuMTUtLjUyLTIuMS0xLjMxLTIuODQtLjc5LS43NC0xLjk0LTEuMTEtMy40My0xLjExcy0yLjczLjU3LTMuNjUsMS43Yy0uOTIsMS4xMy0xLjM5LDIuNTctMS4zOSw0LjN2NC4xYzAsMS43Ni41MiwzLjIsMS41NSw0LjM0czIuMzUsMS43LDMuOTQsMS43YzEuMTIsMCwyLjA0LS4xNSwyLjc2LS40NS43MS0uMywxLjIzLS42NCwxLjU0LTEuMDJ2LTQuNDloLTQuMzN2LTIuMTFoNy4wMXY3LjI1WiIvPgogICAgICA8cGF0aCBjbGFzcz0ic3QwIiBkPSJNMzE3LjYzLDEyNS4xMXY4LjU3aC0yLjY4di0xOS43Nmg3LjE2YzIuMTcsMCwzLjgyLjQ4LDQuOTYsMS40NCwxLjE0Ljk2LDEuNzEsMi4zNiwxLjcxLDQuMTgsMCwxLjAxLS4yNiwxLjktLjc5LDIuNjUtLjUzLjc1LTEuMywxLjM1LTIuMzIsMS43OSwxLjA5LjM1LDEuODcuOTMsMi4zNCwxLjcycy43MSwxLjc3LjcxLDIuOTR2MS44NmMwLC42Mi4wNywxLjE3LjIsMS42NnMuMzcuODkuNzEsMS4ydi4zM2gtMi43NmMtLjM1LS4zMS0uNTgtLjc2LS42OC0xLjM2cy0uMTUtMS4yMS0uMTUtMS44NXYtMS44MWMwLTEuMDctLjMxLTEuOTMtLjk0LTIuNTgtLjYyLS42NS0xLjQ2LS45OC0yLjUxLS45OGgtNC45N1pNMzE3LjYzLDEyM2g0LjIxYzEuNTEsMCwyLjYtLjI5LDMuMjctLjg2LjY3LS41NywxLTEuNDUsMS0yLjYyLDAtMS4xMS0uMzItMS45Ny0uOTctMi41OC0uNjUtLjYxLTEuNjYtLjkyLTMuMDItLjkyaC00LjQ4djYuOThaIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0zNDQuMzksMTI4LjU5aC04LjI5bC0xLjg4LDUuMDloLTIuNzNsNy42NS0xOS43OGgyLjI5bDcuNTMsMTkuNzhoLTIuNzNsLTEuODUtNS4wOVpNMzM2LjkzLDEyNi4zNGg2LjY2bC0zLjI2LTkuMDFoLS4wOGwtMy4zMSw5LjAxWiIvPgogICAgICA8cGF0aCBjbGFzcz0ic3QwIiBkPSJNMzU0LjYzLDEyNS43NXY3LjkzaC0yLjY4di0xOS43OGg3LjU3YzIuMTEsMCwzLjc1LjU0LDQuOTIsMS42M3MxLjc1LDIuNTIsMS43NSw0LjI5LS41OCwzLjI0LTEuNzUsNC4zMS0yLjgxLDEuNjEtNC45MiwxLjYxaC00Ljg5Wk0zNTQuNjMsMTIzLjY0aDQuODljMS4zNCwwLDIuMzQtLjM2LDMtMS4wOHMuOTktMS42Mi45OS0yLjcyLS4zMy0yLjAxLTEtMi43NGMtLjY3LS43My0xLjY2LTEuMS0zLTEuMWgtNC44OXY3LjYzWiIvPgogICAgICA8cGF0aCBjbGFzcz0ic3QwIiBkPSJNMzg1LjAxLDEzMy42OGgtMi42OHYtOC43M2gtOS42djguNzNoLTIuNjh2LTE5Ljc4aDIuNjh2OC45NGg5LjZ2LTguOTRoMi42OHYxOS43OFoiLz4KICAgICAgPHBhdGggY2xhc3M9InN0MCIgZD0iTTM5My4wMSwxMzMuNjhoLTIuNjl2LTE5Ljc4aDIuNjl2MTkuNzhaIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik00MTIuMywxMjcuMzRsLjAzLjA4Yy4wNCwxLjg2LS42MiwzLjQxLTEuOTYsNC42Ny0xLjM0LDEuMjUtMy4xMSwxLjg4LTUuMzEsMS44OHMtNC4wNi0uNzktNS40Ny0yLjM4LTIuMTEtMy42LTIuMTEtNi4wM3YtMy41MmMwLTIuNDQuNy00LjQ1LDIuMTEtNi4wNCwxLjQxLTEuNTksMy4yMy0yLjM4LDUuNDctMi4zOHM0LjAyLjYsNS4zNCwxLjc5YzEuMzIsMS4xOSwxLjk2LDIuNzcsMS45Myw0LjczbC0uMDMuMDhoLTIuNTdjMC0xLjM5LS40MS0yLjQ4LTEuMjItMy4yOS0uODEtLjgxLTEuOTYtMS4yMS0zLjQ1LTEuMjFzLTIuNjguNi0zLjU3LDEuOGMtLjg5LDEuMi0xLjMzLDIuNy0xLjMzLDQuNDh2My41NGMwLDEuOC40NCwzLjMsMS4zMyw0LjUxLjg5LDEuMiwyLjA4LDEuOCwzLjU3LDEuOHMyLjY0LS40LDMuNDUtMS4yYy44Mi0uOCwxLjIyLTEuOTEsMS4yMi0zLjMyaDIuNTdaIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik00MjMuNDIsMTMzLjY4di0xOS43OGg2LjA3YzIuNTksMCw0LjY3Ljc5LDYuMjMsMi4zOCwxLjU3LDEuNTksMi4zNSwzLjY0LDIuMzUsNi4xNnYyLjdjMCwyLjUzLS43OCw0LjU4LTIuMzUsNi4xNnMtMy42NCwyLjM3LTYuMjMsMi4zN2gtNi4wN1pNNDI2LjA5LDExNi4wMXYxNS41N2gzLjRjMS44MywwLDMuMjctLjYsNC4zMy0xLjgsMS4wNS0xLjIsMS41OC0yLjc1LDEuNTgtNC42M3YtMi43M2MwLTEuODYtLjUzLTMuNC0xLjU4LTQuNi0xLjA2LTEuMi0yLjUtMS44MS00LjMzLTEuODFoLTMuNFoiLz4KICAgICAgPHBhdGggY2xhc3M9InN0MCIgZD0iTTQ1My43NSwxMjQuNTFoLTkuMDZ2Ny4wNmgxMC40NXYyLjExaC0xMy4xMnYtMTkuNzhoMTIuOTd2Mi4xMWgtMTAuM3Y2LjRoOS4wNnYyLjExWiIvPgogICAgICA8cGF0aCBjbGFzcz0ic3QwIiBkPSJNNDY5LjMzLDEyOC43YzAtLjktLjM0LTEuNjUtMS4wMi0yLjI2LS42OC0uNjEtMS44OC0xLjEyLTMuNjEtMS41My0yLjA5LS41LTMuNzItMS4yMy00LjktMi4yMS0xLjE3LS45Ny0xLjc2LTIuMTktMS43Ni0zLjY2LDAtMS41NC42My0yLjgzLDEuOS0zLjg3LDEuMjYtMS4wNCwyLjktMS41NSw0LjkxLTEuNTUsMi4xNiwwLDMuODkuNTksNS4xNywxLjc4czEuOSwyLjU2LDEuODUsNC4xM2wtLjAzLjA4aC0yLjU1YzAtMS4xNi0uMzgtMi4xLTEuMTUtMi44MS0uNzYtLjcyLTEuODYtMS4wNy0zLjI5LTEuMDctMS4zMywwLTIuMzUuMy0zLjA2LjlzLTEuMDcsMS4zOS0xLjA3LDIuMzZjMCwuODYuMzksMS41OCwxLjE2LDIuMTVzMi4wMiwxLjA4LDMuNzUsMS41MWMyLjA4LjUyLDMuNjcsMS4yOCw0Ljc1LDIuMjgsMS4wOSwxLDEuNjMsMi4yNSwxLjYzLDMuNzQsMCwxLjU5LS42NSwyLjg4LTEuOTYsMy44NC0xLjMuOTctMy4wMSwxLjQ1LTUuMTEsMS40NS0xLjk3LDAtMy43Mi0uNTQtNS4yNC0xLjYxcy0yLjI1LTIuNTEtMi4yMS00LjNsLjAzLS4wOGgyLjU1YzAsMS4yNy40NywyLjIzLDEuNCwyLjg5czIuMDkuOTksMy40Ni45OSwyLjQyLS4yOCwzLjIxLS44NSwxLjE4LTEuMzQsMS4xOC0yLjMxWiIvPgogICAgICA8cGF0aCBjbGFzcz0ic3QwIiBkPSJNNDc5LjAxLDEzMy42OGgtMi42OXYtMTkuNzhoMi42OXYxOS43OFoiLz4KICAgICAgPHBhdGggY2xhc3M9InN0MCIgZD0iTTQ5OC42NiwxMzEuMDZjLS40Ny43Mi0xLjI5LDEuMzktMi40NSwyLTEuMTYuNjEtMi42Ny45MS00LjUyLjkxLTIuMzYsMC00LjMyLS43Ni01Ljg2LTIuMjctMS41NC0xLjUxLTIuMzItMy40Ny0yLjMyLTUuODd2LTQuMDhjMC0yLjQuNzItNC4zNiwyLjE2LTUuODcsMS40NC0xLjUxLDMuMy0yLjI3LDUuNTctMi4yN3M0LjA0LjU2LDUuMzQsMS42N2MxLjI5LDEuMTEsMS45NiwyLjU1LDEuOTgsNC4zMWwtLjAzLjA4aC0yLjU1Yy0uMDgtMS4xNS0uNTItMi4xLTEuMzEtMi44NC0uNzktLjc0LTEuOTQtMS4xMS0zLjQzLTEuMTFzLTIuNzMuNTctMy42NSwxLjdjLS45MiwxLjEzLTEuMzksMi41Ny0xLjM5LDQuM3Y0LjFjMCwxLjc2LjUyLDMuMiwxLjU1LDQuMzRzMi4zNSwxLjcsMy45NCwxLjdjMS4xMiwwLDIuMDQtLjE1LDIuNzYtLjQ1LjcxLS4zLDEuMjMtLjY0LDEuNTQtMS4wMnYtNC40OWgtNC4zM3YtMi4xMWg3LjAxdjcuMjVaIi8+CiAgICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik01MTguNTIsMTMzLjY4aC0yLjY4bC05LjUyLTE1LjMtLjA4LjAzdjE1LjI3aC0yLjY4di0xOS43OGgyLjY4bDkuNTIsMTUuMjcuMDgtLjAzdi0xNS4yNGgyLjY4djE5Ljc4WiIvPgogICAgPC9nPgogIDwvZz4KPC9zdmc+" alt="Bluluma Design"><img class="logo lg-d" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MTUuMSA5MiIgZmlsbD0iI2ZmZiIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJCbHVsdW1hIj4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNS42OTEgLTUuNjkxKSBzY2FsZSgwLjQ3NDIpIj4KICAgIDxwYXRoIGQ9Ik0xODEuNDcsMTA4Ljc4bC4wMi00Ni4yN2MwLS44NC0uMjMtMS42NS0uNjQtMi4zNS0uNC0uNy0uOTgtMS4zLTEuNy0xLjcybC0zNy4zLTIxLjUyLTQyLjg1LTI0Ljc2Yy0uNzMtLjQyLTEuNTQtLjYyLTIuMzUtLjYyaC0uMDNjLS44LDAtMS42LjIxLTIuMzIuNjJsLTQyLjkxLDI0Ljc5TDE0LjE1LDU4LjQ0Yy0uNzIuNDItMS4zLDEuMDEtMS43LDEuNzIsMCwwLS4wMi4wMi0uMDIuMDMtLjA2LjEtLjA4LjIxLS4xMy4zMS0uMTMuMjYtLjI1LjUyLS4zMy44LS4wNC4xNC0uMDMuMjktLjA2LjQzLS4wNC4yNS0uMS41LS4xLjc2aDB2LjAybC4wMiw0Ni4yNy0uMDIsNDYuMjdjMCwuODQuMjMsMS42NS42NCwyLjM1di4wMmMuNC42OS45OCwxLjI4LDEuNjksMS42OWw3Ny42LDQ0LjgxLDIuNTUsMS40N2MuNzIuNDEsMS41Mi42MiwyLjMyLjYyaC4wNmMuOCwwLDEuNi0uMjEsMi4zMi0uNjJsNDIuOTEtMjQuNzksMzcuMjQtMjEuNDhjLjcyLS40MiwxLjMtMS4wMSwxLjctMS43Mi40MS0uNy42NC0xLjUxLjY0LTIuMzVsLS4wMi00Ni4yN2guMDFaTTE3Mi4xOSwxNTIuNGwtMzYuMzMsMjAuOTktMzQuNjIsMTkuOTdWMjQuMTlsMzQuNTYsMTkuOTQsMzYuMzksMjEuMDIuMDIsNDMuNjItLjAyLDQzLjYyaDBaTTIxLjA5LDcwLjYxbDY1LjAxLDM4LjE3LTY1LjAxLDM4LjIzdi0zOC4yM3MwLTM4LjE3LDAtMzguMTdaTTkxLjk4LDI0LjIydjc3LjI3TDI1LjYzLDYyLjUzbDMyLjgzLTE4Ljk3LDMzLjUzLTE5LjM0aDBaTTI1LjY4LDE1NS4wNWw2Ni4zLTM4Ljk5djc3LjI3bC0zNC40LTE5Ljg1LTMxLjktMTguNDNoMFoiLz4KICAgIDxwYXRoIGQ9Ik05Ni42NywyMDYuMDFjLS44LDAtMS42LS4yMS0yLjMyLS42Mi0xLjQzLS44My0yLjMyLTIuMzUtMi4zMi00LjAxVjE2LjE3YzAtMS42Ni44OC0zLjE4LDIuMzItNC4wMSwxLjQzLS44MywzLjItLjgzLDQuNjMsMGw4MC4xOCw0Ni4zM2MxLjQzLjgyLDIuMzEsMi4zNSwyLjMxLDMuOTlzLS44NiwzLjE3LTIuMjksNC4wMWwtNzIuMDEsNDIuMjksNzEuOTgsNDIuMzNjMS40Mi44NCwyLjI5LDIuMzYsMi4yOCw0LjAxLDAsMS42NS0uODksMy4xNy0yLjMyLDMuOTlsLTgwLjE1LDQ2LjI4Yy0uNzIuNDEtMS41Mi42Mi0yLjMyLjYyaC4wM1pNMTAxLjMsMTE2LjA2djc3LjNsNjYuMzMtMzguMjktNjYuMzMtMzkuMDFoMFpNMTAxLjMsMjQuMnY3Ny4zbDY2LjM1LTM4Ljk2TDEwMS4zLDI0LjJaIi8+CiAgPC9nPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xMDQuODYgLTI2LjUwKSI+CiAgICA8cGF0aCBkPSJNMjYyLjg2LDg1LjY5YzAsNC40MS0xLjU2LDguMTQtNC42OCwxMS4yMS0zLjEyLDMuMDctNi44OSw0LjYtMTEuMjksNC42aC0zNy45OHYtNTguNDhoMzYuNDhjNC4yOSwwLDguMDIsMS4yNSwxMS4xNywzLjc2LDMuMTUsMi41MSw0Ljk1LDUuOCw1LjQsOS44Ny4wNS4zMy4wOC42Ny4wOCwxdjFjMCwzLjEyLS43NSw1Ljg3LTIuMjYsOC4yNC0xLjUxLDIuMzctMy43Niw0LjIzLTYuNzgsNS41NiwzLjA3LDEuMTIsNS40OCwyLjgyLDcuMjQsNS4xLDEuNzYsMi4yOSwyLjY0LDQuOTksMi42NCw4LjEyWk0yNDcuNzIsODUuMWMwLTEuOTUtLjYxLTMuNjQtMS44NC01LjA2LTEuMjMtMS40Mi0yLjc5LTIuMTMtNC42OS0yLjEzaC0xOS43NHYxMy42NGgyMC4xNmMxLjc4LDAsMy4yNS0uNjMsNC4zOS0xLjg4LDEuMTQtMS4yNSwxLjcyLTIuNzcsMS43Mi00LjU2Wk0yNDYuOTcsNjEuNDNjMC0yLjAxLS42My0zLjc0LTEuODgtNS4xOS0xLjI1LTEuNDUtMi44Ni0yLjE4LTQuODEtMi4xOGgtMTguNDl2MTMuOTdsMTkuMjQuMDhjMS43MywwLDMuMTUtLjY2LDQuMjctMS45NywxLjExLTEuMzEsMS42Ny0yLjg5LDEuNjctNC43M1oiLz4KICAgIDxwYXRoIGQ9Ik0yODEuNDQsMTAxLjVoLTExLjh2LTU4LjQ4aDExLjh2NTguNDhaIi8+CiAgICA8cGF0aCBkPSJNMzMwLjEyLDEwMS41aC0yMi4yNWMtNC4wNywwLTYuOTQtLjE5LTguNjItLjU5LTIuNzktLjY3LTUuMDItMi4xMi02LjY5LTQuMzUtMS45LTIuNTctMi44NC01LjQ5LTIuODQtOC43OXYtMjkuNjJoMTEuNjN2MjguN2MwLDEuMzkuNjEsMi41OSwxLjg0LDMuNiwxLjIzLDEsMi41NCwxLjUxLDMuOTMsMS41MWgxMS4zOHYtMzMuOGgxMS42M3Y0My4zNFoiLz4KICAgIDxwYXRoIGQ9Ik0zNTAuMjksMTAxLjVoLTExLjh2LTU4LjQ4aDExLjh2NTguNDhaIi8+CiAgICA8cGF0aCBkPSJNMzk4Ljk4LDEwMS41aC0yMi4yNWMtNC4wNywwLTYuOTQtLjE5LTguNjItLjU5LTIuNzktLjY3LTUuMDItMi4xMi02LjY5LTQuMzUtMS45LTIuNTctMi44NC01LjQ5LTIuODQtOC43OXYtMjkuNjJoMTEuNjN2MjguN2MwLDEuMzkuNjEsMi41OSwxLjg0LDMuNiwxLjIzLDEsMi41NCwxLjUxLDMuOTMsMS41MWgxMS4zOHYtMzMuOGgxMS42M3Y0My4zNFoiLz4KICAgIDxwYXRoIGQ9Ik00NjkuNTksMTAxLjVoLTExLjI5di0yNy4xMmMwLTEuMDYtLjExLTEuODktLjMzLTIuNS0uMjItLjYxLS42Ny0xLjI3LTEuMzQtMS45Ni0uNjctLjctMS4zNC0xLjItMi4wMS0xLjUtLjY3LS4zMS0xLjQ1LS40Ni0yLjM0LS40NmgtOC4yOHYzMy41NWgtMTEuNDZ2LTMzLjhoLTEzLjM4djMzLjhoLTExLjh2LTQzLjM0aDQ2LjQzYzIuOSwwLDUuMTkuMjcsNi44Ni43OSwxLjY3LjUzLDMuMzIsMS42Niw0Ljk0LDMuMzgsMS4yOCwxLjM5LDIuMjcsMi43NiwyLjk3LDQuMDlzMS4wNSwyLjc4LDEuMDUsNC4zNHYzMC43M1oiLz4KICAgIDxwYXRoIGQ9Ik01MjAuNDUsMTAxLjVoLTMxLjI5Yy0zLjUxLDAtNi41MS0xLjE4LTguOTktMy41NC0yLjQ4LTIuMzYtMy43Mi01LjM1LTMuNzItOC45NnMxLjEzLTYuOTEsMy4zOC05LjM4YzIuMjUtMi40Nyw1LjA4LTMuNzEsOC40Ny0zLjcxaDIwLjE5di0yLjM0YzAtLjcyLS4xMy0xLjM1LS4zOC0xLjg4LS4yNS0uNTMtLjY1LTEuMTYtMS4yMS0xLjg4LS43OC0uODktMS41OC0xLjQ2LTIuNDItMS43MXMtMi0uMzgtMy41LS4zOGgtMjEuNjF2LTkuNTRoMjIuMTdjNC4wNywwLDcuMTEuMzUsOS4xMiwxLjA0LDIuMDEuNywzLjc0LDEuNzQsNS4xOSwzLjEzLDEuODQsMS44NCwzLjA3LDMuODQsMy42OCw2LjAxLjYxLDIuMTcuOTIsNC45Ni45Miw4LjM1djI0LjhaTTUwOC40OSw5Mi42M3YtOC40NWgtMTQuNzJjLTEuMzksMC0yLjU4LjQtMy41NiwxLjItLjk4LjgtMS40NiwxLjg2LTEuNDYsMy4xOSwwLDEuMTYuNDcsMi4xMywxLjQyLDIuOS45NS43NywyLjA0LDEuMTYsMy4yNiwxLjE2aDE1LjA2WiIvPgogIDwvZz4KPC9zdmc+Cg==" alt="Bluluma Design"></a>
+    <button class="icon langb" id="lang" aria-label="Language"></button>
+  </div>
+  <div class="segs" id="segs" hidden><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i></div>
+</header>
+<main id="app"></main>
+</div>
+<div class="dock" id="dock" hidden><button class="btn" id="dockbtn"></button></div>
+
+<script>
+{
+const API="https://uzdjwpkgldzhnoxjeyrw.supabase.co/functions/v1/quiz-api";
+const PAYLINK={en:"",zh:""};
+const LIVE=/(^|\.)bluluma\.com$|workers\.dev$/.test(location.hostname);
+const IB=LIVE?"/img/":"img/";
+const P=[
+ {k:"web",n:["Website & Visibility","網站與曝光"]},
+ {k:"lead",n:["Lead Capture & Response","客戶查詢與回覆"]},
+ {k:"ops",n:["Operations & Automation","營運與自動化"]},
+ {k:"mkt",n:["Marketing & Content","行銷與內容"]},
+ {k:"data",n:["Data & Decisions","數據與決策"]}];
+const PROFILE=[
+ {q:["What kind of business do you run?","你經營哪一類生意？"],chips:1,o:[["Health, dental or wellness","醫療、牙科或健康"],["Trades, construction or home services","裝修、建築或家居服務"],["Real estate or property","地產或物業"],["Restaurant, café or retail","餐飲、咖啡店或零售"],["Professional services","專業服務"],["Beauty, fitness or personal care","美容、健身或個人護理"],["Other","其他"]]},
+ {q:["How big is your team?","你的團隊有多少人？"],o:[["Just me","只有我自己"],["2–5 people","2–5 人"],["6–20 people","6–20 人"],["21+ people","21 人以上"]]}];
+const Q=[
+ ["web",["How would you describe your website today?","你現在的網站是什麼狀況？"],[["No website, or a social page only","沒有網站，或只有社交專頁"],["Outdated, built 3+ years ago","過時了，3 年以上沒改版"],["Decent, but rarely updated","還可以，但很少更新"],["Modern, fast and updated regularly","現代、快速，而且定期更新"]]],
+ ["web",["When someone searches for your service nearby, where do you show up?","客人在附近搜尋你的服務時，你出現在哪裡？"],[["Not sure, or not at all","不清楚，或完全找不到"],["Page 2 or lower","第 2 頁或更後"],["Sometimes in the top results","有時在前面"],["Top 3, with a full Google profile and reviews","前 3 名，有完整的 Google 商家檔案和評價"]]],
+ ["web",["Can customers book, buy or request a quote online at any hour?","客人可以 24 小時在網上預約、購買或索取報價嗎？"],[["No, phone or email only","不行，只能打電話或 Email"],["A basic contact form","只有簡單的聯絡表格"],["Online booking or quote form","有網上預約或報價表格"],["Fully online, with instant confirmation","全部網上完成，並即時確認"]]],
+ ["lead",["How fast do you usually reply to a new inquiry?","你通常多快回覆新的查詢？"],[["Next day or later","隔天或更久"],["Within a few hours","幾小時內"],["Within an hour","一小時內"],["Instantly, with an automatic reply and follow-up","即時，有自動回覆和跟進"]]],
+ ["lead",["What happens to calls you miss?","錯過的來電會怎樣處理？"],[["They're mostly lost","大多就這樣流失了"],["Voicemail I check later","留言，之後再聽"],["Someone calls back the same day","當天有人回電"],["An AI receptionist or auto-text handles them","AI 接待員或自動短訊處理"]]],
+ ["lead",["Where do your leads and customer details live?","你的潛在客戶和客戶資料存在哪裡？"],[["In my head and my inbox","在我腦中和收件匣裡"],["A spreadsheet","試算表"],["A CRM I update sometimes","有 CRM，但不常更新"],["A CRM with an automatic pipeline","有 CRM 和自動化銷售流程"]]],
+ ["ops",["Hours a week spent on repetitive admin (invoices, scheduling, data entry)?","每週花多少小時在重複的行政工作上（發票、排程、輸入資料）？"],[["10 or more","10 小時以上"],["5 to 10","5 到 10 小時"],["2 to 5","2 到 5 小時"],["Under 2","少於 2 小時"]]],
+ ["ops",["How are invoices and payments handled?","發票和收款怎樣處理？"],[["By hand, and I chase late payments","人手處理，還要追收欠款"],["Templates I send manually","用範本，人手寄出"],["Accounting software","用會計軟件"],["Automatic invoicing and card-on-file charges","自動發票，並自動從存檔的信用卡扣款"]]],
+ ["ops",["Do your business tools talk to each other?","你的各種工具之間有互相連接嗎？"],[["No, I copy and paste between them","沒有，我要在之間複製貼上"],["A few manual exports","有時人手匯出匯入"],["Some built-in integrations","有一些內建整合"],["Connected with automations","全部用自動化串連"]]],
+ ["mkt",["How often do you post content or social updates?","你多久發佈一次內容或社交媒體更新？"],[["Rarely","很少"],["About once a month","大約每月一次"],["Weekly","每週"],["Several times a week, with AI help","每週數次，有 AI 幫忙"]]],
+ ["mkt",["Do you use AI tools like ChatGPT or Claude in the business?","你在生意上有用 ChatGPT 或 Claude 這類 AI 工具嗎？"],[["Never","從來沒有"],["Tried them a few times","試過幾次"],["Weekly, mostly for writing","每週用，主要寫文字"],["Daily, built into how we work","每天用，已融入工作流程"]]],
+ ["mkt",["Do you follow up with past customers for reviews or repeat business?","你會跟進舊客人，邀請評價或再次光顧嗎？"],[["Never","從來沒有"],["Occasionally, by hand","偶爾，人手處理"],["Regular emails or texts","定期 Email 或短訊"],["Automatic review and rebooking messages","自動發出評價邀請和回訪提醒"]]],
+ ["data",["Do you know where your new customers come from?","你知道新客人從哪裡來嗎？"],[["No idea","完全不知道"],["A rough guess","大概猜到"],["I track some sources","有追蹤部分來源"],["Clear numbers for each channel","每個渠道都有清楚數字"]]],
+ ["data",["How do you check how the business is doing?","你怎樣了解生意的表現？"],[["I don't, really","其實沒有在看"],["I look at the bank balance","看銀行戶口餘額"],["A monthly spreadsheet","每月的試算表"],["A live dashboard","即時更新的 dashboard"]]],
+ ["data",["What's your plan for AI in the next 12 months?","未來 12 個月你對 AI 有什麼計劃？"],[["Not on my radar","還沒考慮"],["Interested, but don't know where to start","有興趣，但不知從何開始"],["Testing a few things","正在試用一些工具"],["A clear plan and budget","有清楚的計劃和預算"]]]];
+const TIERS=[[0,["Running on","Manual"],["一切還靠","人手"],["Most of your business still runs on you. That's the biggest opportunity: a few simple systems can win back hours every week and stop leads from slipping away.","大部分工作仍然靠你一個人撐著。這正是最大的機會：幾個簡單的系統就能每週省回好幾個小時，並且不再流失客人。"]],
+ [40,["Getting","Started"],["剛剛","起步"],["You have the basics, but gaps in response time and automation are quietly costing you customers. The fixes are clear and quick.","基本功已經有了，但回覆速度和自動化的缺口正悄悄讓你流失客人。要修正的地方很清楚，也很快見效。"]],
+ [60,["AI-Curious","Operator"],["AI","探索者"],["You're ahead of most small businesses. Connecting your tools and automating follow-up is the next step up.","你已經領先大部分小商家。下一步是把工具串連起來，讓跟進自動化。"]],
+ [80,["AI-Ready","Leader"],["AI","領先者"],["Your business is set up to use AI well. Now it's about fine-tuning and scaling what already works.","你的生意已經準備好善用 AI。接下來是微調，並把有效的做法擴大。"]]];
+const PKG=[
+ [["Launch","起步方案"],[["A new website built to bring in leads","專為帶來客人而設計的新網站"],["Google Business Profile set up and optimised","設定並優化 Google 商家檔案"],["Online booking or instant quote form","網上預約或即時報價表格"],["Automatic reply to every new inquiry","每個新查詢都自動回覆"]]],
+ [["Grow","成長方案"],[["Website redesign focused on turning visitors into inquiries","以轉換查詢為目標的網站改版"],["Instant lead reply and automatic follow-up","即時回覆查詢並自動跟進"],["Automatic review requests after every job","每次服務後自動邀請評價"],["A simple CRM so no lead gets lost","簡單的 CRM，不再漏掉任何客人"]]],
+ [["Connect","串連方案"],[["Your tools connected with automations","用自動化串連你的工具"],["A CRM pipeline from inquiry to paid","從查詢到收款的 CRM 流程"],["Automatic invoicing and payment reminders","自動發票和收款提醒"],["An AI-assisted content workflow","AI 輔助的內容製作流程"]]],
+ [["Scale","規模化方案"],[["A live business dashboard","即時更新的業務 dashboard"],["Advanced automations across the business","覆蓋整個生意的進階自動化"],["An AI receptionist for calls and texts","處理來電和短訊的 AI 接待員"],["Ongoing optimisation and support","持續優化和支援"]]]];
+const TXT={
+ web:[["Customers who search for you are likely finding competitors first. A slow or missing site makes people leave before they ever contact you.","搜尋你的客人很可能先找到你的競爭對手。網站太慢或沒有網站，客人還沒聯絡你就已經離開。"],["Your site works, but it isn't pulling its weight. Better local search ranking and an online booking or quote path would turn more visitors into inquiries.","你的網站能用，但沒有發揮應有的作用。提升本地搜尋排名，再加上網上預約或報價，就能把更多訪客變成查詢。"],["Your online presence is strong. Keep content fresh and test what makes visitors act.","你的網上形象很強。保持內容新鮮，並測試什麼最能推動訪客行動。"]],
+ lead:[["Slow replies and missed calls are likely your most expensive leak. Many people contact the business that answers first.","回覆太慢和錯過來電，很可能是你最昂貴的漏洞。很多客人會選擇最先回覆的那一家。"],["You respond reasonably, but not instantly. Automatic replies and a missed-call text-back would close the gap.","你的回覆速度還可以，但不是即時。自動回覆和未接來電自動短訊就能補上這個缺口。"],["You capture and answer leads well. A connected pipeline can help you follow up at scale.","你接收和回覆查詢做得很好。串連好的銷售流程能讓你大規模跟進。"]],
+ ops:[["A large part of your week goes to work a system could do. Every hour of admin is an hour not spent on customers or growth.","你每週有一大部分時間花在系統本可代勞的工作上。每一小時的行政，都是少了一小時照顧客人或發展生意。"],["Some of your admin is streamlined, but your tools still need you in the middle. Connecting them is the next win.","部分行政已經簡化，但工具之間仍然要靠你來回處理。把它們串連起來就是下一個突破。"],["Your operations are lean. Look for the last manual handoffs and automate them.","你的營運很精簡。找出最後幾個人手交接的地方，把它們自動化。"]],
+ mkt:[["Without steady content and follow-up, you rely on new customers every month. Past customers are your cheapest source of new revenue.","沒有穩定的內容和跟進，你每個月都要重新找客人。舊客人其實是成本最低的收入來源。"],["You market sometimes. AI can make consistent posting and review requests take minutes, not hours.","你偶爾有做行銷。AI 能讓定期發文和邀請評價只花幾分鐘，而不是幾小時。"],["Your marketing is consistent. Automating reviews and rebooking makes it compound.","你的行銷很穩定。把評價和回訪自動化，效果會不斷累積。"]],
+ data:[["You're making decisions without clear numbers. Knowing where customers come from shows what to spend more and less on.","你在沒有清楚數字的情況下做決定。知道客人從哪裡來，就知道錢應該多花或少花在哪裡。"],["You track some things, but not in one place. A simple dashboard turns guesswork into decisions.","你有追蹤部分數字，但沒有集中在一處。一個簡單的 dashboard 能把猜測變成決策。"],["You run on data. Make sure it updates automatically so it stays trusted.","你靠數據經營。確保它自動更新，數字才一直可靠。"]]};
+const ACT={
+ web:[["Claim and complete your Google Business Profile, with photos and hours","認領並完善你的 Google 商家檔案，加上相片和營業時間"],["Add an online booking or instant quote form to your site","在網站加上網上預約或即時報價表格"],["Ask your last 10 happy customers for a Google review","邀請最近 10 位滿意的客人留下 Google 評價"]],
+ lead:[["Turn on a missed-call auto-text that replies within 60 seconds","開啟未接來電自動短訊，60 秒內回覆"],["Set up an automatic email reply for every website inquiry","為每個網站查詢設定自動 Email 回覆"],["Move all leads into one simple CRM","把所有潛在客人集中到一個簡單的 CRM"]],
+ ops:[["List every task you repeat weekly and how long it takes","列出每週重複的工作，以及每項花多少時間"],["Switch invoices to automatic, with saved cards for regular clients","發票改為自動化，熟客用存檔信用卡扣款"],["Connect your form, calendar and CRM so no one re-types data","串連表格、行事曆和 CRM，不用再重複輸入資料"]],
+ mkt:[["Use AI to draft 4 weeks of posts in one sitting","用 AI 一次過草擬 4 週的貼文"],["Send an automatic review request after every job","每次服務後自動發出評價邀請"],["Set up a rebooking reminder for past customers","為舊客人設定回訪提醒"]],
+ data:[["Ask every new customer how they found you, and log it","問每位新客人怎樣找到你，並記錄下來"],["Pick 3 numbers to watch weekly: leads, bookings, revenue","每週追蹤 3 個數字：查詢、預約、營業額"],["Put those numbers on one live dashboard","把這些數字放在一個即時 dashboard 上"]]};
+const HRS=[12,7.5,3.5,1];
+const ALL=[...PROFILE.map(p=>({sec:0,q:p.q,o:p.o,chips:p.chips})),...Q.map(([k,q,o])=>({sec:P.find(p=>p.k===k).n,q,o,k}))];
+
+const T={
+en:{h1:"Is your business ready for AI, or <em>falling behind?</em>",intro:"17 quick questions about how your business gets found, answers leads and runs day to day. Get your AI Readiness Score and a personal bonus matched to your biggest gap.",
+f1b:"3 min",f1:"17 questions",f2b:"5 areas",f2:"scored out of 100",f3b:"$300",f3:"personal bonus",start:"Start the assessment",cont:"Continue",resume:"Your answers are saved. You'll pick up where you left off.",
+about:"About your business",q:"Question",of:"of",
+cheers:{3:"Good start. Keep going.",6:"You're doing great.",9:"Over halfway there.",12:"Most people stop before this point. Not you.",15:"Last two questions."},
+leadh:"Your score is <em>ready.</em>",leadp:"Tell us where to send a copy, so you can come back to your results anytime.",
+fname:"First name",biz:"Business name",email:"Work email",site:"Your website (optional)",nosite:"I don't have a website yet",see:"See my score",
+consent:"Email me my results, reminders about my bonus and occasional AI tips for my business. Unsubscribe anytime.",nospam:"We never share your details. Bluluma Design, Vancouver, BC.",
+anah:"Analyzing your answers",steps:["Scoring your 5 areas","Ranking your biggest gaps","Matching your personal bonus","Building your 30-day plan"],
+of100:"out of 100",five:"Your five areas",
+bonusk:"Matched to your biggest gap",bonush:"You've unlocked a <em>personal bonus.</em>",tap:"Tap to reveal",bonusfront:"Your Bluluma bonus",
+off:"off your",valid:d=>`Valid until ${d} (14 days).`,fine:"For a signed project only. Not redeemable for cash.",
+unlockh:"Unlock your full report",unlockp:"What's costing you customers, what to fix first, and your 30-day plan.",once:"One-time payment. No subscription.",
+pay:["Detailed breakdown of all 5 areas","Your top 3 gaps, ranked by impact","A week-by-week 30-day action plan","Your recommended package","$2.99 credited toward any Bluluma project"],
+unlockb:"Unlock report — $2.99",demo:"Demo checkout: unlocks right away. A Stripe payment link replaces this at launch.",
+gaps:"Your top 3 gaps, <em>ranked.</em>",gap:"Gap",time:"Time check",
+timep:(h,y)=>`You reported about <b>${h} hours a week</b> on repetitive admin. That's roughly ${y} hours a year, and much of it is the kind of work automation handles well.`,
+plan:"Your 30-day plan",week:i=>"Week "+i,lock:"Lock it in.",retake:"Then retake this assessment to see your new score.",all:"All five areas",quick:"Quick wins: ",
+pkgh:"Your recommended package",pkgp:"Based on your score and your three weakest areas.",
+canh:"What we build for <em>businesses like yours.</em>",canp:"Websites that look professional are the starting point. The real job is bringing you more customers and giving you hours back.",
+caseh:"Recent work",casep:"Websites designed and built by Bluluma.",
+revh:"What clients say",
+stat:[["20+","years designing for business"],["500+","websites built"],["EN · 中文","bilingual sites"]],
+ctah:"Get your custom proposal and a <em>free preview.</em>",
+ctap1:"We'll review your current website and send a redesign preview built for your business, with a proposal for your recommended package.",
+ctap0:"We'll design a free homepage concept for your business and send it with a proposal for your recommended package.",
+ctabonus:"Your $300 bonus is applied automatically.",
+ctac:"Yes, send me my custom proposal and free preview",notes:"Anything we should know? (optional)",ctab:"Send my proposal",
+ctas:"No calls, no pressure. Everything arrives by email.",
+done:"Request received.",donep:e=>`We'll email your proposal and preview to <b>${e}</b> within 2 business days.`,
+demo2:"Demo: requests are saved on this device only. They connect to Bluluma's inbox at launch.",need:"Please tick the box to request your proposal.",
+date:d=>d.toLocaleDateString("en-CA",{month:"short",day:"numeric",year:"numeric"})},
+zh:{h1:"你的生意準備好迎接 AI，<em>還是正在落後？</em>",intro:"17 道快速問題，看看你的生意怎樣被客人找到、怎樣回覆查詢、日常怎樣運作。立即取得 AI 準備度分數，以及一份針對你最大缺口的專屬獎勵。",
+f1b:"3 分鐘",f1:"17 道問題",f2b:"5 大範疇",f2:"滿分 100 分",f3b:"$300",f3:"專屬獎勵",start:"開始評估",cont:"繼續",resume:"你的答案已儲存，會從上次停下的地方繼續。",
+about:"關於你的生意",q:"第",of:"/",
+cheers:{3:"好的開始，繼續加油。",6:"你做得很好。",9:"已經過了一半。",12:"很多人做不到這裡，你做到了。",15:"最後兩題。"},
+leadh:"你的分數<em>已經出來了。</em>",leadp:"留下聯絡方式，我們會寄一份結果給你，方便隨時回來查看。",
+fname:"名字",biz:"公司名稱",email:"工作 Email",site:"公司網址（選填）",nosite:"我還沒有網站",see:"查看我的分數",
+consent:"請用 Email 寄給我評估結果、專屬獎勵到期提醒，以及偶爾的生意 AI 小貼士。隨時可以退訂。",nospam:"我們絕不會分享你的資料。Bluluma Design，加拿大卑詩省溫哥華。",
+anah:"正在分析你的答案",steps:["計算五大範疇分數","排列你最大的缺口","配對你的專屬獎勵","制定你的 30 天計劃"],
+of100:"滿分 100",five:"你的五大範疇",
+bonusk:"根據你最大的缺口配對",bonush:"你獲得了一份<em>專屬獎勵。</em>",tap:"點一下揭曉",bonusfront:"你的 Bluluma 專屬獎勵",
+off:"",valid:d=>`有效期至 ${d}（14 天）。`,fine:"僅限簽約主案使用，不可兌換現金。",
+unlockh:"解鎖完整報告",unlockp:"什麼正在讓你流失客人、應該先修正什麼，以及你的 30 天計劃。",once:"一次性付款，不是訂閱。",
+pay:["五大範疇的詳細分析","你最大的 3 個缺口，按影響排序","逐週的 30 天行動計劃","為你推薦的方案","$2.99 可抵扣任何 Bluluma 項目"],
+unlockb:"解鎖報告 — $2.99",demo:"示範付款：按下即解鎖。正式上線時會換成 Stripe 付款連結。",
+gaps:"你最大的 3 個缺口，<em>按重要性排序。</em>",gap:"缺口",time:"時間檢查",
+timep:(h,y)=>`你表示每週大約花 <b>${h} 小時</b>在重複性的行政工作上，一年約 ${y} 小時，而其中大部分都正是自動化最擅長處理的工作。`,
+plan:"你的 30 天計劃",week:i=>"第 "+i+" 週",lock:"鞏固成果。",retake:"然後重新做一次評估，看看你的新分數。",all:"五大範疇總覽",quick:"快速改善：",
+pkgh:"為你推薦的方案",pkgp:"根據你的分數和最弱的三個範疇。",
+canh:"我們為像你這樣的生意<em>打造什麼。</em>",canp:"專業漂亮的網站只是起點。真正的目標，是為你帶來更多客人，並把時間還給你。",
+caseh:"近期作品",casep:"由 Bluluma 設計及製作的網站。",
+revh:"客戶怎麼說",
+stat:[["20+","年商業設計經驗"],["500+","個網站作品"],["EN · 中文","雙語網站"]],
+ctah:"免費取得專屬提案和<em>網站預覽。</em>",
+ctap1:"我們會檢視你現有的網站，為你的生意做一個改版預覽，並附上推薦方案的提案。",
+ctap0:"我們會免費為你的生意設計一個首頁概念，並附上推薦方案的提案。",
+ctabonus:"你的 $300 專屬獎勵會自動套用。",
+ctac:"好，請寄給我專屬提案和免費預覽",notes:"有什麼想讓我們知道的嗎？（選填）",ctab:"寄給我提案",
+ctas:"不用通電話，沒有壓力，所有內容都以 Email 寄出。",
+done:"已收到你的申請。",donep:e=>`我們會在 2 個工作天內把提案和預覽寄到 <b>${e}</b>。`,
+demo2:"示範版：申請只儲存在這部裝置。正式上線時會直接送到 Bluluma。",need:"請勾選方格以申請提案。",
+date:d=>d.getFullYear()+" 年 "+(d.getMonth()+1)+" 月 "+d.getDate()+" 日"}};
+const BONUS={web:["Website project","網站項目"],lead:["Lead Response System","客戶自動回覆系統"],ops:["AI Automation project","AI 自動化項目"],mkt:["SEO & AI Search package","SEO 與 AI 搜尋方案"],data:["Business Dashboard","業務 Dashboard"]};
+const REV=[
+ ["Sony Lin has managed our professional websites for years, and he’s always been punctual, dependable, and professional. I’d recommend him without hesitation to anyone looking for a web designer.","Sony Lin 多年來一直負責管理我們診所的網站，他一向準時、可靠又專業。只要有人在找網頁設計師，我都會毫不猶豫地推薦他。","Patrick Wu","Friendly Dental Centre"],
+ ["He delivers not just a website, but a complete business solution designed to enhance your brand, generate leads, and support long-term growth.","他交付的不只是一個網站，而是一套完整的商業解決方案，能提升你的品牌、帶來潛在客戶，並支撐長期成長。","Eric Kim","Eric Kim Realty"],
+ ["Their process was structured, transparent, and efficient. We launched on time with a website that immediately started generating leads.","Bluluma 的工作流程清晰、透明且高效率。我們準時完成網站上線，而且新網站很快就開始為我們帶來客戶詢問。","Ryan Patel","Vita Environmental"],
+ ["The attention to detail and strategic thinking behind every design decision made all the difference. Our new site performs beyond expectations.","每一個設計決策背後都有清楚的策略思考與細節考量。我們的新網站表現遠遠超出預期。","Daniel Wong","BTN Real Estate Advisory"],
+ ["Bluluma delivered a brand system and website that elevated our entire business. The clarity and professionalism speak for themselves.","Bluluma 為我們打造的品牌系統與網站，大幅提升了整體企業形象與市場專業度。","Jessica Lee","NuEra Nutra"],
+ ["Working with Bluluma was seamless from start to finish. They understood our vision and delivered a platform that truly represents our development.","與 Bluluma 合作的過程非常順暢。他們完全理解我們的願景，並打造出真正代表這個開發案的品牌與網站。","Sarah Thompson","Headwater Developments"]];
+const CASES=[
+ ["tsai-orthodontics-vancouver-website-design","Tsai Orthodontics",["Orthodontist · Vancouver","矯齒診所 · 溫哥華"]],
+ ["friendly-dental-centre-richmond-website-design","Friendly Dental Centre",["Dental clinic · Richmond","牙科診所 · 列治文"]],
+ ["eric-kim-realty-vancouver-realtor-website","Eric Kim Realty",["Realtor · Vancouver","地產經紀 · 溫哥華"]],
+ ["one-park-richmond-presale-website","One Park",["Presale development · Richmond","預售樓盤 · 列治文"]],
+ ["k-chen-construction-vancouver-website","K. Chen Construction",["Construction · Vancouver","建築管理 · 溫哥華"]],
+ ["ttop-chicken-richmond-restaurant-website","TTOP Chicken",["Restaurant · Richmond","餐廳 · 列治文"]],
+ ["shootingstar-travel-website-design","Shooting Star Travel",["Travel agency · trilingual","旅行社 · 三語網站"]],
+ ["elevate-international-education-website-design","Elevate International Education",["Education · bilingual","教育 · 雙語網站"]]];
+const ICON={web:'<path d="M4 6h32v24H4z"/><path d="M4 12h32M14 36h12M20 30v6"/>',seo:'<circle cx="17" cy="17" r="10"/><path d="M25 25l10 10"/><path d="M13 19l3-4 3 3 4-6"/>',ai:'<path d="M8 10h24v16H18l-7 6v-6H8z"/><path d="M15 18h.01M20 18h.01M25 18h.01"/>',lead:'<path d="M8 8h8l3 7-4 3a18 18 0 0 0 9 9l3-4 7 3v8a2 2 0 0 1-2 2A28 28 0 0 1 6 10a2 2 0 0 1 2-2z"/>',ops:'<circle cx="20" cy="20" r="5"/><path d="M20 4v6M20 30v6M4 20h6M30 20h6M9 9l4 4M27 27l4 4M31 9l-4 4M13 27l-4 4"/>',lang:'<path d="M6 10h16M14 6v4M10 10c1 6 5 11 10 13M18 10c-1 6-5 11-10 13"/><path d="M22 34l6-14 6 14M24 29h8"/>',data:'<path d="M6 34h28M10 28v-8M18 28V12M26 28v-12M34 28V8"/>'};
+const CAN=[
+ ["web",["Websites built to convert","為轉換而設計的網站"],["Professional, fast and on-brand, with every page designed to turn visitors into calls, bookings and quote requests.","專業、快速、符合品牌，每一頁都為了把訪客變成來電、預約和報價查詢而設計。"]],
+ ["seo",["More customers from Google","從 Google 帶來更多客人"],["Local SEO, a complete Google Business Profile and a steady flow of reviews, so you show up when people nearby search.","本地 SEO、完整的 Google 商家檔案和持續增加的評價，讓附近的人一搜就找到你。"]],
+ ["ai",["Show up in AI answers","出現在 AI 的回答裡"],["More people now ask ChatGPT, Google AI Overviews and Perplexity who to hire. We set up your business so AI tools can find and recommend it.","越來越多人直接問 ChatGPT、Google AI Overview 和 Perplexity 該找誰。我們讓 AI 工具能找到並推薦你的生意。"]],
+ ["lead",["Never miss a lead","不再錯過任何客人"],["Instant replies to every inquiry, missed-call text-back and an AI receptionist that answers calls and texts around the clock.","每個查詢即時回覆、未接來電自動短訊，加上 24 小時接聽來電和短訊的 AI 接待員。"]],
+ ["ops",["Hours back every week","每週省回好幾個小時"],["Automations connect your forms, calendar, invoices and CRM, so the busywork runs itself.","用自動化串連表格、行事曆、發票和 CRM，瑣碎工作自動完成。"]],
+ ["data",["Know what's working","清楚知道什麼有效"],["A live dashboard shows where your customers come from and which marketing pays off.","即時 dashboard 讓你看到客人從哪裡來，哪些行銷真正帶來回報。"]],
+ ["lang",["Bilingual, done properly","真正做好的雙語網站"],["English and Chinese (or another language) with proper typography and search-friendly pages for each language.","英文加中文（或其他語言），每種語言都有合適的字型排版和利於搜尋的頁面。"]]];
+const BREAKS={1:[0,"rev",0],4:[1,"case",0],7:[2,"rev",2],10:[3,"case",2],13:[4,"rev",1]};
+const BRK=[[["Great start.","好的開始。"],["Next: how customers find you online.","下一步：客人怎樣在網上找到你。"]],
+ [["1 of 5 areas done.","已完成 1 / 5 個範疇。"],["Most owners never look this closely at their business. You're already ahead.","大部分老闆從來沒有這樣仔細看過自己的生意，你已經領先了。"]],
+ [["You're halfway there.","已經完成一半。"],["Keep going. The biggest wins usually show up in the next two areas.","繼續加油，最大的改善空間通常就在接下來的兩個範疇。"]],
+ [["3 of 5 areas done.","已完成 3 / 5 個範疇。"],["Only 6 questions left. Your report is taking shape.","只剩 6 題，你的報告已經成形。"]],
+ [["Almost done!","快完成了！"],["Last 3 questions, then your score and your personal bonus.","最後 3 題，之後就能看到分數和你的專屬獎勵。"]]];
+const SEGOF=i=>i<2?0:1+Math.floor((i-2)/3);
+let S={i:0,a:[],lead:{},paid:false,req:null,lang:null,bonus:null,flipped:false};
+try{const s=JSON.parse(localStorage.getItem("bl-air3")||"null");if(s&&Array.isArray(s.a))S=Object.assign(S,s)}catch(e){}
+{const m=location.pathname.match(/^\/(en|zh)/);if(m)S.lang=m[1];else if(!S.lang)S.lang=(navigator.language||"").toLowerCase().startsWith("zh")?"zh":"en"}
+if(LIVE&&!/^\/(en|zh)\/?$/.test(location.pathname))history.replaceState(null,"","/"+S.lang+location.search);
+const api=b=>fetch(API,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(b)}).then(r=>r.ok?r.json():Promise.reject(r.status));
+const save=()=>{try{localStorage.setItem("bl-air3",JSON.stringify(S))}catch(e){}};
+const $=id=>document.getElementById(id),t=k=>T[S.lang][k],L=x=>Array.isArray(x)?x[S.lang==="en"?0:1]:x,en=()=>S.lang==="en";
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const app=$("app");let view="intro",brk=null,timers=[];
+const clear=()=>{timers.forEach(clearTimeout);timers=[]};
+function segs(){const on=["quiz","break","lead"].includes(view);$("segs").hidden=!on;if(!on)return;
+  const done=view==="break"?S.i+1:S.i;
+  [...$("segs").children].forEach((s,k)=>{const lo=k===0?0:2+(k-1)*3,n=k===0?2:3,f=view==="lead"?1:Math.max(0,Math.min(1,(done-lo)/n));s.firstChild.style.setProperty("--f",f)})}
+function dock(label,fn){const d=$("dock");if(!label){d.hidden=true;return}d.hidden=false;$("dockbtn").textContent=label;$("dockbtn").onclick=fn}
+function go(v){clear();view=v;window.scrollTo(0,0);$("back").disabled=!(v==="quiz"||v==="break"||v==="lead");draw()}
+function draw(){
+  $("back").disabled=!(view==="quiz"||view==="break"||view==="lead");
+  document.documentElement.lang=en()?"en":"zh-Hant";$("lang").textContent=en()?"中文":"EN";segs();dock();
+  ({intro,quiz,break:brkv,lead,ana,result})[view]();
+}
+function revCard(r){return `<div class="card quote"><div class="stars" aria-label="5 stars">★★★★★</div><p>“${L([r[0],r[1]])}”</p><div class="who"><b>${r[2]}</b> · ${r[3]}</div></div>`}
+function caseCard(c){return `<div class="card case"><img src="${IB}${c[0]}.webp" alt="${c[1]} website" loading="lazy"><p><b>${c[1]}</b> · ${L(c[2])}</p></div>`}
+function intro(){
+  app.innerHTML=`<section class="screen" style="padding-top:18px"><h1>${t("h1")}</h1><p class="lead">${t("intro")}</p>
+   <div class="hero-strip">${CASES.slice(0,3).map(c=>`<img src="img/${c[0]}.webp" alt="${c[1]}">`).join("")}</div>
+   <p class="small center">${t("casep")}</p>
+   <div class="facts"><div><b>${t("f1b")}</b>${t("f1")}</div><div><b>${t("f2b")}</b>${t("f2")}</div><div><b>${t("f3b")}</b>${t("f3")}</div></div>
+   ${revCard(REV[1])}<p class="small center" style="margin-top:14px">${S.a.length&&S.a.length<ALL.length?t("resume"):""}</p></section>`;
+  dock(t("start"),()=>{if(S.a.length>=ALL.length&&S.lead.email){go("result");return}S.i=Math.min(S.a.length,ALL.length-1);go("quiz")});
+}
+function quiz(){
+  const q=ALL[S.i],ch=t("cheers")[S.i];
+  app.innerHTML=`<section class="screen" key="${S.i}"><p class="qsec">${q.sec===0?t("about"):L(q.sec)} · ${en()?`${t("q")} ${S.i+1} ${t("of")} ${ALL.length}`:`${S.i+1} / ${ALL.length}`}</p>
+   <h2>${L(q.q)}</h2><p class="cheer">${ch||""}</p>
+   <div class="opts${q.chips?" chips":""}" id="opts">${q.o.map((o,j)=>`<button class="opt${S.a[S.i]===j?" on":""}" data-j="${j}">${L(o)}</button>`).join("")}</div></section>`;
+  $("opts").onclick=e=>{const b=e.target.closest(".opt");if(!b)return;S.a[S.i]=+b.dataset.j;save();
+    [...$("opts").children].forEach(c=>c.classList.toggle("on",c===b));
+    timers.push(setTimeout(()=>{if(BREAKS[S.i]){brk=BREAKS[S.i][0];go("break")}else if(S.i<ALL.length-1){S.i++;save();go("quiz")}else go("lead")},260))};
+}
+function brkv(){
+  const [n,kind,x]=Object.values(BREAKS).find(b=>b[0]===brk),pct=Math.round((S.i+1)/ALL.length*100),b=BRK[n];
+  app.innerHTML=`<section class="screen center"><svg class="done" viewBox="0 0 100 100" fill="none" stroke-width="5" stroke-linecap="round"><circle cx="50" cy="50" r="45"/><path d="M32 51l12 12 24-26"/></svg>
+   <p class="pct">${pct}%</p><h2>${L(b[0])}</h2><p class="lead">${L(b[1])}</p></section>
+   <section class="screen" style="animation-delay:.5s">${kind==="rev"?revCard(REV[x]):caseCard(CASES[x])}</section>`;
+  dock(t("cont"),()=>{S.i++;save();go("quiz")});
+}
+function lead(){
+  const l=S.lead||{};
+  app.innerHTML=`<section class="screen" style="padding-top:12px"><h2>${t("leadh")}</h2><p class="lead">${t("leadp")}</p>
+  <form class="card" id="leadform">
+    <label for="fname">${t("fname")}</label><input id="fname" autocomplete="given-name" required value="${esc(l.name||"")}">
+    <label for="biz">${t("biz")}</label><input id="biz" autocomplete="organization" required value="${esc(l.biz||"")}">
+    <label for="email">${t("email")}</label><input id="email" type="email" autocomplete="email" required value="${esc(l.email||"")}">
+    <label for="site">${t("site")}</label><input id="site" type="text" inputmode="url" autocapitalize="off" spellcheck="false" placeholder="yourbusiness.com" value="${esc(l.site||"")}">
+    <label class="check"><input type="checkbox" id="nosite"${l.nosite?" checked":""}><span>${t("nosite")}</span></label>
+    <label class="check" style="margin-top:18px"><input type="checkbox" id="consent0"${l.consent?" checked":""}><span>${t("consent")}</span></label>
+    <p class="small" style="margin-top:16px">${t("nospam")}</p>
+  </form></section>`;
+  $("nosite").onchange=e=>{$("site").disabled=e.target.checked;if(e.target.checked)$("site").value=""};
+  const f=$("leadform");f.onsubmit=e=>{e.preventDefault();
+    let site=$("site").value.trim();if(site&&!/^https?:\/\//i.test(site))site="https://"+site;
+    S.lead={name:$("fname").value.trim(),biz:$("biz").value.trim(),email:$("email").value.trim(),site,nosite:$("nosite").checked,consent:$("consent0").checked};
+    const r=calc(),ti=TIERS.reduce((a,x,i)=>r.total>=x[0]?i:a,0),bk=[...P].sort((a,b)=>r.sc[a.k]-r.sc[b.k])[0].k;
+    S.bonus={k:bk,exp:Date.now()+14*864e5};save();go("ana");
+    api({action:"lead",data:{lang:S.lang,name:S.lead.name,business:S.lead.biz,email:S.lead.email,website:site,no_website:S.lead.nosite,marketing_consent:S.lead.consent,
+      industry:PROFILE[0].o[S.a[0]][0],team_size:PROFILE[1].o[S.a[1]][0],answers:S.a,scores:r.sc,total_score:r.total,tier:TIERS[ti][1].join(" "),package:PKG[ti][0][0],bonus_category:bk}})
+     .then(d=>{S.id=d.id;S.token=d.token;S.bonus.exp=Date.parse(d.bonus_expires_at)||S.bonus.exp;save()}).catch(()=>{})};
+  dock(t("see"),()=>f.requestSubmit());
+}
+function ana(){
+  const st=t("steps");
+  app.innerHTML=`<section class="screen center"><div class="ring"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="none" stroke="var(--line)" stroke-width="8"/><circle id="arc" cx="60" cy="60" r="52" fill="none" stroke="var(--acc)" stroke-width="8" stroke-linecap="round" stroke-dasharray="327" stroke-dashoffset="327"/></svg><b id="num" style="font-size:44px">0%</b></div>
+   <h3>${t("anah")}</h3><ul class="steps" id="steps" style="text-align:left">${st.map(s=>`<li><i>✓</i>${s}</li>`).join("")}</ul></section>
+   <section id="rot">${revCard(REV[0])}</section>`;
+  const D=5200,t0=performance.now();let ri=0;
+  const tick=now=>{if(view!=="ana")return;const p=Math.min(1,(now-t0)/D),n=Math.round(p*100);$("num").textContent=n+"%";$("arc").style.strokeDashoffset=327-327*p;
+    [...$("steps").children].forEach((li,k)=>li.classList.toggle("ok",p>=(k+1)/st.length-.02));
+    if(p<1)requestAnimationFrame(tick);else timers.push(setTimeout(()=>go("result"),500))};
+  requestAnimationFrame(tick);
+  const rot=()=>{ri=(ri+1)%REV.length;const r=$("rot");if(r){r.innerHTML=revCard(REV[ri]);r.firstChild.classList.add("screen")}timers.push(setTimeout(rot,2400))};timers.push(setTimeout(rot,2400));
+}
+function calc(){
+  const off=PROFILE.length,sc={};
+  P.forEach(p=>{let s=0,n=0;Q.forEach(([k],j)=>{if(k===p.k){s+=S.a[off+j]||0;n+=3}});sc[p.k]=Math.round(s/n*100)});
+  const total=Math.round(P.reduce((a,p)=>a+sc[p.k],0)/P.length);
+  return{sc,total,hrs:HRS[S.a[off+6]||0],ind:PROFILE[0].o[S.a[0]||0]};
+}
+const lvl=v=>v<40?0:v<75?1:2;
+function result(){
+  const r=calc(),ti=TIERS.reduce((a,x,i)=>r.total>=x[0]?i:a,0),tr=TIERS[ti],nm=L([tr[1],tr[2]]);
+  const order=[...P].sort((a,b)=>r.sc[a.k]-r.sc[b.k]),top=order.slice(0,3),pk=PKG[ti],hasSite=S.lead.site&&!S.lead.nosite;
+  if(!S.bonus){S.bonus={k:order[0].k,exp:Date.now()+14*864e5};save()}
+  const bk=S.bonus.k,exp=t("date")(new Date(S.bonus.exp)),dot=en()?". ":"。";
+  const report=`
+  <div class="card"><h2>${t("gaps")}</h2>
+   ${top.map((p,i)=>`<div class="pillar"><p class="lvl">${t("gap")} ${i+1} · ${L(p.n)} · ${r.sc[p.k]}/100</p><p>${L(TXT[p.k][lvl(r.sc[p.k])])}</p></div>`).join("")}
+   <div class="pillar"><p class="lvl">${t("time")}</p><p>${t("timep")(r.hrs,Math.round(r.hrs*48))}</p></div></div>
+  <div class="card"><h2>${t("plan")}</h2><div class="plan">
+   ${top.map((p,i)=>`<div><b>${t("week")(i+1)}</b><strong>${L(p.n)}${dot}</strong>${ACT[p.k].slice(0,2).map(L).join(dot)}${dot}</div>`).join("")}
+   <div><b>${t("week")(4)}</b><strong>${t("lock")}</strong> ${L(ACT[top[0].k][2])}${dot}${t("retake")}</div></div></div>
+  <div class="card"><h2>${t("all")}</h2>${order.map(p=>`<div class="pillar"><p class="lvl">${L(p.n)} · ${r.sc[p.k]}/100</p><p>${L(TXT[p.k][lvl(r.sc[p.k])])}</p><p class="small">${t("quick")}${ACT[p.k].map(L).join(" · ")}</p></div>`).join("")}</div>
+  <div class="card pkg"><p class="eyebrow">${t("pkgh")}</p><h2>Bluluma ${L(pk[0])}</h2><p class="small">${t("pkgp")}</p><ul class="tick">${pk[1].map(x=>`<li>${L(x)}</li>`).join("")}</ul></div>`;
+  app.innerHTML=`<section class="screen center">
+    <div class="ring"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="none" stroke="var(--line)" stroke-width="10"/><circle id="arc" cx="60" cy="60" r="52" fill="none" stroke="var(--acc)" stroke-width="10" stroke-linecap="round" stroke-dasharray="327" stroke-dashoffset="327"/></svg><b id="num">0</b><small>${t("of100")}</small></div>
+    <p class="small">${esc(S.lead.biz||"")} · ${L(r.ind)}</p><h1>${esc(nm[0])}${en()?" ":""}<em>${esc(nm[1])}</em></h1><p class="lead">${L(tr[3])}</p></section>
+   <div class="card"><h3>${t("five")}</h3><div class="bars">${P.map(p=>`<div class="bar${r.sc[p.k]<40?" low":""}"><div class="t"><span>${L(p.n)}</span><b>${r.sc[p.k]}</b></div><div class="tr"><i style="width:${Math.max(r.sc[p.k],3)}%"></i></div></div>`).join("")}</div></div>
+   <section class="sec"><p class="eyebrow">${t("bonusk")}</p><h2>${t("bonush")}</h2>
+    <div class="flipwrap"><button class="flip${S.flipped?" open":""}" id="flip" aria-label="${t("tap")}">
+     <div class="face front"><img src="${IB}bluluma-icon-white.svg" alt=""><div><h3 style="color:inherit">${t("bonusfront")}</h3><p class="tap">${t("tap")} →</p></div></div>
+     <div class="face back"><div><div class="amt">$300</div><div class="for">${en()?t("off")+" "+L(BONUS[bk]):"抵用券 · 用於你的"+L(BONUS[bk])}</div></div><div class="small">${t("valid")(exp)} ${t("fine")}</div></div>
+    </button></div></section>
+   <section class="sec"><div class="${S.paid?"":"locked"}" id="lockwrap"><div class="${S.paid?"":"blur"}" id="report">${report}</div>
+    ${S.paid?"":`<div class="pay" id="paybox"><div class="card"><h3>${t("unlockh")}</h3><p class="small">${t("unlockp")}</p><div class="price">$2.99</div><p class="small">${t("once")}</p>
+     <ul class="tick">${t("pay").map(x=>`<li>${x}</li>`).join("")}</ul><button class="btn" id="unlock">${t("unlockb")}</button>${PAYLINK[S.lang]?"":`<p class="small">${t("demo")}</p>`}</div></div>`}</div></section>
+   <section class="sec"><h2>${t("canh")}</h2><p class="lead">${t("canp")}</p>
+    <div class="can">${CAN.map(c=>`<div><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICON[c[0]]}</svg><span><h3>${L(c[1])}</h3><p>${L(c[2])}</p></span></div>`).join("")}</div></section>
+   <section class="sec"><div class="stats">${t("stat").map(s=>`<div><b>${s[0]}</b><span>${s[1]}</span></div>`).join("")}</div></section>
+   <section class="sec"><h2>${t("caseh")}</h2><p class="small">${t("casep")}</p>
+    <div class="cases">${CASES.map(c=>`<figure><img src="img/${c[0]}.webp" alt="${c[1]} website" loading="lazy"><figcaption>${c[1]}<span>${L(c[2])}</span></figcaption></figure>`).join("")}</div></section>
+   <section class="sec"><h2>${t("revh")}</h2><div class="revs">${REV.map(revCard).join("")}</div></section>
+   <section class="sec"><div class="card cta" id="cta">${S.req?`<h2>${t("done")}</h2><p>${t("donep")(esc(S.lead.email))}</p>${LIVE?"":`<p class="small">${t("demo2")}</p>`}`:`
+    <h2>${t("ctah")}</h2><p>${t(hasSite?"ctap1":"ctap0")}</p>${hasSite?`<p class="small">${esc(S.lead.site)}</p>`:""}
+    <span class="chip">$300 · ${L(BONUS[bk])}</span><p class="small">${t("ctabonus")} ${t("valid")(exp)}</p>
+    <form id="reqform"><label class="check"><input type="checkbox" id="consent"><span>${t("ctac")}</span></label>
+    <label for="notes">${t("notes")}</label><textarea id="notes"></textarea>
+    <div style="margin-top:18px"><button class="btn" type="submit">${t("ctab")}</button></div><p class="small" id="reqmsg" aria-live="polite"></p></form>
+    <p class="small">${t("ctas")}</p>`}</div></section>`;
+  let n=0;const step=()=>{if(view!=="result")return;n=Math.min(r.total,n+1);$("num").textContent=n;$("arc").style.strokeDashoffset=327-327*n/100;if(n<r.total)requestAnimationFrame(step)};step();
+  $("flip").onclick=()=>{if(S.flipped)return;S.flipped=true;save();$("flip").classList.add("open")};
+  const u=$("unlock");if(u)u.onclick=()=>{const pl=PAYLINK[S.lang];
+    if(pl&&S.id){location.href=pl+"?client_reference_id="+encodeURIComponent(S.id)+"&prefilled_email="+encodeURIComponent(S.lead.email||"")+(S.lang==="zh"?"&locale=zh-TW":"");return}
+    S.paid=true;save();const y=window.scrollY;result();window.scrollTo(0,y)};
+  const f=$("reqform");if(f)f.onsubmit=e=>{e.preventDefault();if(!$("consent").checked){$("reqmsg").textContent=t("need");return}
+    S.req={at:new Date().toISOString(),notes:$("notes").value.trim(),pkg:pk[0][0],score:r.total,bonus:bk};save();
+    if(S.id)api({action:"request",id:S.id,token:S.token,notes:S.req.notes}).catch(()=>{});const y=window.scrollY;result();window.scrollTo(0,y)};
+  dock(S.req?null:t("ctab").replace(/^Send my proposal$/,"Get my free proposal").replace(/^寄給我提案$/,"免費取得提案"),()=>$("cta").scrollIntoView({behavior:"smooth"}));
+}
+$("back").onclick=()=>{if(view==="lead"){S.i=ALL.length-1;go("quiz")}else if(view==="break"){go("quiz")}else if(view==="quiz"&&S.i>0){S.i--;const b=BREAKS[S.i];if(b){brk=b[0];go("break")}else go("quiz")}else if(view==="quiz")go("intro")};
+{const q=new URLSearchParams(location.search),cs=q.get("paid");
+ if(cs&&S.lead.email){S.paid=true;save();if(S.id)api({action:"paid",id:S.id,token:S.token,session_id:cs}).catch(()=>{});history.replaceState(null,"",location.pathname);view="result"}
+ else if(S.lead.email&&S.a.length>=ALL.length&&S.bonus)view="result"}
+$("lang").onclick=()=>{S.lang=en()?"zh":"en";save();if(LIVE)history.replaceState(null,"","/"+S.lang+location.search);draw()};
+draw();
+}
+</script>
+</body>
+</html>

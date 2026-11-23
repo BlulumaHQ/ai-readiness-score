@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Readiness Score · Bluluma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE: calm, confident business advisor — Bluluma Editorial Refined
+   IDEA: a consultant's diagnostic report, filled in live
+   PICTURE: the quiz card itself, then a large score ring
+   COLOUR and TYPE: warm paper, ink, Bluluma blue #5887da; Instrument Serif + Inter, Noto Serif/Sans TC for 中文
+   LAYOUT: one calm column, progress rule on top, report sections below */
+:root{color-scheme:light dark;
+--bg:light-dark(#f6f3ee,#0f1418);--card:light-dark(#fffdf9,#161d23);--ink:light-dark(#17202a,#ece7df);
+--mute:light-dark(#5d6670,#9aa3ab);--line:light-dark(#e2ddd4,#2a333b);--acc:light-dark(#2f5fb3,#7fa6ea);
+--accs:light-dark(#e9effa,#1b2a3b);--warn:light-dark(#9a3b2a,#e0907f);
+--serif:"Instrument Serif",Georgia,serif;--sans:Inter,system-ui,sans-serif}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+:root[lang=zh-Hant]{--serif:"Noto Serif TC","Instrument Serif",serif;--sans:Inter,"Noto Sans TC",system-ui,sans-serif}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--sans);overflow-x:clip}
+:root[lang=zh-Hant] body{line-height:1.75}
+.wrap{max-width:760px;margin:0 auto;padding:clamp(18px,3vw,36px) max(5vw,16px) 64px}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:36px}
+.logo{height:52px;width:auto;display:block}.lg-d{display:none}
+:root[data-theme=dark] .lg-l{display:none}:root[data-theme=dark] .lg-d{display:block;height:34px}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .lg-l{display:none}:root:not([data-theme=light]) .lg-d{display:block;height:34px}}
+.lang{display:flex;border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.lang button{border:0;background:transparent;color:var(--mute);font:500 14px var(--sans);padding:0 14px;min-height:40px;cursor:pointer}
+.lang button.on{background:var(--ink);color:var(--bg)}
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.08;text-wrap:balance;margin:0}
+:root[lang=zh-Hant] :is(h1,h2,h3){font-weight:500;line-height:1.3}
+h1{font-size:clamp(34px,6vw,52px)}h2{font-size:clamp(26px,4.5vw,36px)}h3{font-size:23px}
+:root[lang=zh-Hant] h1{font-size:clamp(30px,5.4vw,46px)}
+em{font-style:italic;color:var(--acc)}:root[lang=zh-Hant] em{font-style:normal}
+p{margin:.6em 0}.lead{font-size:18px;color:var(--mute);max-width:60ch}
+.card{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:clamp(20px,4vw,36px);margin-top:20px}
+.btn{appearance:none;border:0;border-radius:4px;background:var(--acc);color:var(--card);font:600 16px var(--sans);padding:14px 22px;min-height:48px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn:focus-visible,.opt:focus-visible,input:focus-visible,textarea:focus-visible,.lang button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.btn[disabled]{opacity:.4;cursor:default}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:24px}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:28px}
+.facts div{border-top:1px solid var(--line);padding-top:10px;font-size:14px;color:var(--mute)}
+.facts b{display:block;font-size:22px;color:var(--ink);font-family:var(--serif);font-weight:400}
+.prog{height:3px;background:var(--line);border-radius:2px;overflow:hidden;margin:6px 0 18px}
+.prog i{display:block;height:100%;background:var(--acc);transition:width .35s}
+.qhead{display:flex;justify-content:space-between;gap:12px;color:var(--mute);font-size:14px}
+.opts{display:grid;gap:10px;margin-top:20px}
+.opt{text-align:left;background:transparent;border:1px solid var(--line);border-radius:4px;padding:14px 16px;min-height:52px;font:16px var(--sans);color:var(--ink);cursor:pointer}
+.opt:hover{border-color:var(--acc)}.opt.on{border-color:var(--acc);background:var(--accs)}
+.chips{grid-template-columns:repeat(2,minmax(0,1fr))}
+label{display:block;font-size:14px;color:var(--mute);margin:16px 0 6px}
+input,textarea{width:100%;font:16px var(--sans);padding:13px 14px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink);min-height:48px}
+textarea{min-height:90px;resize:vertical}
+.check{display:flex;gap:10px;align-items:flex-start;color:var(--ink);font-size:15px;margin-top:12px;cursor:pointer}
+.check input{width:20px;height:20px;min-height:0;margin-top:3px;flex:none;accent-color:var(--acc)}
+.small{font-size:13px;color:var(--mute)}
+.score{display:grid;grid-template-columns:200px minmax(0,1fr);gap:28px;align-items:center}
+.ring{position:relative;width:200px;height:200px}.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font:400 64px "Instrument Serif",serif}
+.ring small{position:absolute;left:0;bottom:46px;width:100%;text-align:center;color:var(--mute);font-size:13px}
+.bars{display:grid;gap:14px;margin-top:8px}
+.bar .t{display:flex;justify-content:space-between;gap:12px;font-size:15px}
+.bar .tr{height:8px;background:var(--line);border-radius:4px;margin-top:6px;overflow:hidden}
+.bar .tr i{display:block;height:100%;background:var(--acc)}
+.bar.low .tr i{background:var(--warn)}
+.locked{position:relative}.locked .blur{filter:blur(7px);user-select:none;pointer-events:none;max-height:900px;overflow:hidden}
+.pay{position:absolute;inset:0;display:grid;place-items:center;padding:16px}
+.pay .card{max-width:420px;text-align:center;box-shadow:0 18px 50px rgba(0,0,0,.12)}
+.price{font:400 56px "Instrument Serif",serif;line-height:1}
+ul.tick{padding:0;list-style:none;text-align:left;margin:16px 0}
+ul.tick li{padding:7px 0 7px 26px;position:relative;border-bottom:1px solid var(--line);font-size:15px}
+ul.tick li::before{content:"";position:absolute;left:4px;top:15px;width:10px;height:6px;border:2px solid var(--acc);border-top:0;border-right:0;transform:rotate(-45deg)}
+.pillar{border-top:1px solid var(--line);padding:20px 0}
+.pillar .lvl{font-size:14px;color:var(--mute)}
+.plan{display:grid;gap:12px}
+.plan div{display:grid;grid-template-columns:90px minmax(0,1fr);gap:14px;border-top:1px solid var(--line);padding-top:12px}
+.plan b{font-family:var(--serif);font-weight:400;font-size:20px;color:var(--acc)}
+.pkg{border:1px solid var(--acc);background:var(--accs)}
+.pkg .name{font-size:14px;color:var(--acc);font-weight:600}
+.cta{background:var(--acc);color:var(--card);border:0}
+.cta h2 em{color:inherit;opacity:.85}.cta .btn{background:var(--card);color:var(--acc)}
+.cta .small,.cta label{color:inherit;opacity:.85}.cta .check{color:inherit}
+.cta textarea{background:var(--card)}
+.cta ul.tick li{border-color:rgba(255,255,255,.25)}.cta ul.tick li::before{border-color:currentColor}
+.spin{width:44px;height:44px;border:3px solid var(--line);border-top-color:var(--acc);border-radius:50%;animation:s 1s linear infinite;margin:10px auto 18px}
+@keyframes s{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.spin{animation:none}.prog i{transition:none}}
+@media(max-width:600px){.logo{height:40px}.score{grid-template-columns:1fr;justify-items:center;text-align:center}.facts{grid-template-columns:1fr}.chips{grid-template-columns:1fr}.plan div{grid-template-columns:1fr;gap:2px}.pay{align-items:start;padding-top:40px}}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a href="https://bluluma.com" aria-label="Bluluma Design"><img class="logo lg-l" src="{{LOGO}}" alt="Bluluma Design"><img class="logo lg-d" src="{{LOGOW}}" alt="Bluluma Design"></a>
+  <div class="lang" role="group" aria-label="Language"><button data-l="en">EN</button><button data-l="zh">中文</button></div>
+</header>
+
+<section id="v-intro">
+  <h1 data-h="h1"></h1>
+  <p class="lead" data-t="intro"></p>
+  <div class="facts"><div><b data-t="f1b"></b><span data-t="f1"></span></div><div><b data-t="f2b"></b><span data-t="f2"></span></div><div><b data-t="f3b"></b><span data-t="f3"></span></div></div>
+  <div class="row"><button class="btn" id="start" data-t="start"></button><span class="small" id="resume"></span></div>
+</section>
+
+<section id="v-quiz" hidden>
+  <div class="qhead"><span id="qsec"></span><span id="qnum"></span></div>
+  <div class="prog"><i id="bar"></i></div>
+  <div class="card">
+    <h2 id="qtext"></h2>
+    <div class="opts" id="opts"></div>
+    <div class="row"><button class="btn ghost" id="back" data-t="back"></button></div>
+  </div>
+</section>
+
+<section id="v-lead" hidden>
+  <h2 data-h="leadh"></h2>
+  <p class="lead" data-t="leadp"></p>
+  <form class="card" id="leadform">
+    <label for="fname" data-t="fname"></label><input id="fname" autocomplete="given-name" required>
+    <label for="biz" data-t="biz"></label><input id="biz" autocomplete="organization" required>
+    <label for="email" data-t="email"></label><input id="email" type="email" autocomplete="email" required>
+    <label for="site" data-t="site"></label><input id="site" type="text" inputmode="url" autocapitalize="off" spellcheck="false" autocomplete="url" placeholder="https://yourbusiness.com">
+    <label class="check"><input type="checkbox" id="nosite"><span data-t="nosite"></span></label>
+    <div class="row"><button class="btn" type="submit" data-t="see"></button></div>
+    <p class="small" data-t="nospam"></p>
+  </form>
+</section>
+
+<section id="v-load" hidden class="card" style="text-align:center">
+  <div class="spin"></div><h3 id="loadmsg"></h3>
+</section>
+
+<section id="v-result" hidden>
+  <div class="score">
+    <div class="ring"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="none" stroke="var(--line)" stroke-width="10"/><circle id="arc" cx="60" cy="60" r="52" fill="none" stroke="var(--acc)" stroke-width="10" stroke-linecap="round" stroke-dasharray="327" stroke-dashoffset="327"/></svg><b id="num">0</b><small data-t="of100"></small></div>
+    <div><p class="small" id="rname"></p><h1 id="tier"></h1><p class="lead" id="tierdesc"></p></div>
+  </div>
+  <div class="card"><h3 data-t="five"></h3><div class="bars" id="bars"></div></div>
+  <div class="locked" id="lockwrap">
+    <div class="blur" id="report"></div>
+    <div class="pay" id="paybox">
+      <div class="card">
+        <h3 data-t="unlockh"></h3>
+        <p class="small" data-t="unlockp"></p>
+        <div class="price">$2.99</div><p class="small" data-t="once"></p>
+        <ul class="tick" id="paylist"></ul>
+        <button class="btn" id="unlock" style="width:100%" data-t="unlockb"></button>
+        <p class="small" data-t="demo"></p>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<script>
+{
+const T={
+en:{h1:"Is your business ready for AI, or <em>falling behind?</em>",intro:"Answer 17 quick questions about how your business gets found, answers leads and runs day to day. Get your AI Readiness Score and see exactly where time and customers are slipping away.",
+f1b:"3 min",f1:"17 questions",f2b:"5 areas",f2:"scored out of 100",f3b:"Instant",f3:"score on screen",start:"Start the assessment",resume:"Your answers are saved. You'll pick up where you left off.",back:"Back",
+about:"About your business",of:" of ",leadh:"Your score is <em>ready.</em>",leadp:"Tell us where to send a copy, so you can come back to your results anytime.",
+fname:"First name",biz:"Business name",email:"Work email",site:"Your website (optional)",nosite:"I don't have a website yet",see:"See my score",
+nospam:"No spam. One copy of your results, plus occasional AI tips for small business. Unsubscribe anytime.",
+load:["Scoring your answers…","Comparing your five areas…","Finding your biggest gaps…"],of100:"out of 100",five:"Your five areas",
+unlockh:"Unlock your full report",unlockp:"What's costing you customers, what to fix first, and your 30-day plan.",once:"One-time payment. No subscription.",
+pay:["Detailed breakdown of all 5 areas","Your top 3 gaps, ranked by impact","A week-by-week 30-day action plan","Your recommended package","$2.99 credited toward any Bluluma project"],
+unlockb:"Unlock report — $2.99",demo:"Demo checkout: unlocks right away. A Stripe payment link replaces this at launch.",
+gaps:"Your top 3 gaps, <em>ranked.</em>",gap:"Gap",time:"Time check",
+timep:(h,y)=>`You reported about <b>${h} hours a week</b> on repetitive admin. That's roughly ${y} hours a year, and much of it is the kind of work automation handles well.`,
+plan:"Your 30-day plan",week:"Week",lock:"Lock it in.",retake:"Then retake this assessment to see your new score.",all:"All five areas",quick:"Quick wins: ",
+pkgh:"Your recommended package",pkgp:"Based on your score and your three weakest areas.",
+ctah:"Get your custom proposal and a <em>free preview.</em>",
+ctap1:"We'll review your current website and send a redesign preview built for your business, with a proposal for the package above.",
+ctap0:"We'll design a free homepage concept for your business and send it with a proposal for the package above.",
+ctac:"Yes, send me my custom proposal and free preview",notes:"Anything we should know? (optional)",ctab:"Send my proposal",
+ctas:"No calls, no pressure. Everything arrives by email. Your $2.99 is credited toward any project.",
+done:"Request received.",donep:(e)=>`We'll email your proposal and preview to <b>${e}</b> within 2 business days.`,
+demo2:"Demo: requests are saved on this device only. They connect to Bluluma's inbox at launch.",need:"Please tick the box to request your proposal."},
+zh:{h1:"你的生意準備好迎接 AI，<em>還是正在落後？</em>",intro:"回答 17 道快速問題，了解你的生意怎樣被客人找到、怎樣回覆查詢、日常怎樣運作。立即取得你的 AI 準備度分數，看清楚時間和客人在哪裡流失。",
+f1b:"3 分鐘",f1:"17 道問題",f2b:"5 大範疇",f2:"滿分 100 分",f3b:"即時",f3:"馬上看到分數",start:"開始評估",resume:"你的答案已儲存，會從上次停下的地方繼續。",back:"上一題",
+about:"關於你的生意",of:" / ",leadh:"你的分數<em>已經出來了。</em>",leadp:"留下聯絡方式，我們會寄一份結果給你，方便隨時回來查看。",
+fname:"名字",biz:"公司名稱",email:"工作 Email",site:"公司網址（選填）",nosite:"我還沒有網站",see:"查看我的分數",
+nospam:"不會濫發。只寄一份你的結果，以及偶爾的小商家 AI 小貼士，隨時可以退訂。",
+load:["正在計算你的答案…","正在比較五大範疇…","正在找出你最大的缺口…"],of100:"滿分 100",five:"你的五大範疇",
+unlockh:"解鎖完整報告",unlockp:"什麼正在讓你流失客人、應該先修正什麼，以及你的 30 天計劃。",once:"一次性付款，不是訂閱。",
+pay:["五大範疇的詳細分析","你最大的 3 個缺口，按影響排序","逐週的 30 天行動計劃","為你推薦的方案","$2.99 可抵扣任何 Bluluma 項目"],
+unlockb:"解鎖報告 — $2.99",demo:"示範付款：按下即解鎖。正式上線時會換成 Stripe 付款連結。",
+gaps:"你最大的 3 個缺口，<em>按重要性排序。</em>",gap:"缺口",time:"時間檢查",
+timep:(h,y)=>`你表示每週大約花 <b>${h} 小時</b>在重複性的行政工作上，一年約 ${y} 小時，而其中大部分都正是自動化最擅長處理的工作。`,
+plan:"你的 30 天計劃",week:"第",lock:"鞏固成果。",retake:"然後重新做一次評估，看看你的新分數。",all:"五大範疇總覽",quick:"快速改善：",
+pkgh:"為你推薦的方案",pkgp:"根據你的分數和最弱的三個範疇。",
+ctah:"免費取得專屬提案和<em>網站預覽。</em>",
+ctap1:"我們會檢視你現有的網站，為你的生意做一個改版預覽，並附上以上方案的提案。",
+ctap0:"我們會免費為你的生意設計一個首頁概念，並附上以上方案的提案。",
+ctac:"好，請寄給我專屬提案和免費預覽",notes:"有什麼想讓我們知道的嗎？（選填）",ctab:"寄給我提案",
+ctas:"不用通電話，沒有壓力，所有內容都以 Email 寄出。你的 $2.99 可抵扣任何項目。",
+done:"已收到你的申請。",donep:(e)=>`我們會在 2 個工作天內把提案和預覽寄到 <b>${e}</b>。`,
+demo2:"示範版：申請只儲存在這部裝置。正式上線時會直接送到 Bluluma。",need:"請勾選方格以申請提案。"}};
+const P=[
+ {k:"web",n:["Website & Visibility","網站與曝光"]},
+ {k:"lead",n:["Lead Capture & Response","客戶查詢與回覆"]},
+ {k:"ops",n:["Operations & Automation","營運與自動化"]},
+ {k:"mkt",n:["Marketing & Content","行銷與內容"]},
+ {k:"data",n:["Data & Decisions","數據與決策"]}];
+const PROFILE=[
+ {q:["What kind of business do you run?","你經營哪一類生意？"],chips:1,o:[["Health, dental or wellness","醫療、牙科或健康"],["Trades, construction or home services","裝修、建築或家居服務"],["Real estate or property","地產或物業"],["Restaurant, café or retail","餐飲、咖啡店或零售"],["Professional services","專業服務"],["Beauty, fitness or personal care","美容、健身或個人護理"],["Other","其他"]]},
+ {q:["How big is your team?","你的團隊有多少人？"],o:[["Just me","只有我自己"],["2–5 people","2–5 人"],["6–20 people","6–20 人"],["21+ people","21 人以上"]]}];
+const Q=[
+ ["web",["How would you describe your website today?","你現在的網站是什麼狀況？"],[["No website, or a social page only","沒有網站，或只有社交專頁"],["Outdated, built 3+ years ago","過時了，3 年以上沒改版"],["Decent, but rarely updated","還可以，但很少更新"],["Modern, fast and updated regularly","現代、快速，而且定期更新"]]],
+ ["web",["When someone searches for your service nearby, where do you show up?","客人在附近搜尋你的服務時，你出現在哪裡？"],[["Not sure, or not at all","不清楚，或完全找不到"],["Page 2 or lower","第 2 頁或更後"],["Sometimes in the top results","有時在前面"],["Top 3, with a full Google profile and reviews","前 3 名，有完整的 Google 商家檔案和評價"]]],
+ ["web",["Can customers book, buy or request a quote online at any hour?","客人可以 24 小時在網上預約、購買或索取報價嗎？"],[["No, phone or email only","不行，只能打電話或 Email"],["A basic contact form","只有簡單的聯絡表格"],["Online booking or quote form","有網上預約或報價表格"],["Fully online, with instant confirmation","全部網上完成，並即時確認"]]],
+ ["lead",["How fast do you usually reply to a new inquiry?","你通常多快回覆新的查詢？"],[["Next day or later","隔天或更久"],["Within a few hours","幾小時內"],["Within an hour","一小時內"],["Instantly, with an automatic reply and follow-up","即時，有自動回覆和跟進"]]],
+ ["lead",["What happens to calls you miss?","錯過的來電會怎樣處理？"],[["They're mostly lost","大多就這樣流失了"],["Voicemail I check later","留言，之後再聽"],["Someone calls back the same day","當天有人回電"],["An AI receptionist or auto-text handles them","AI 接待員或自動短訊處理"]]],
+ ["lead",["Where do your leads and customer details live?","你的潛在客戶和客戶資料存在哪裡？"],[["In my head and my inbox","在我腦中和收件匣裡"],["A spreadsheet","試算表"],["A CRM I update sometimes","有 CRM，但不常更新"],["A CRM with an automatic pipeline","有 CRM 和自動化銷售流程"]]],
+ ["ops",["Hours a week spent on repetitive admin (invoices, scheduling, data entry)?","每週花多少小時在重複的行政工作上（發票、排程、輸入資料）？"],[["10 or more","10 小時以上"],["5 to 10","5 到 10 小時"],["2 to 5","2 到 5 小時"],["Under 2","少於 2 小時"]]],
+ ["ops",["How are invoices and payments handled?","發票和收款怎樣處理？"],[["By hand, and I chase late payments","人手處理，還要追收欠款"],["Templates I send manually","用範本，人手寄出"],["Accounting software","用會計軟件"],["Automatic invoicing and card-on-file charges","自動發票，並自動從存檔的信用卡扣款"]]],
+ ["ops",["Do your business tools talk to each other?","你的各種工具之間有互相連接嗎？"],[["No, I copy and paste between them","沒有，我要在之間複製貼上"],["A few manual exports","有時人手匯出匯入"],["Some built-in integrations","有一些內建整合"],["Connected with automations","全部用自動化串連"]]],
+ ["mkt",["How often do you post content or social updates?","你多久發佈一次內容或社交媒體更新？"],[["Rarely","很少"],["About once a month","大約每月一次"],["Weekly","每週"],["Several times a week, with AI help","每週數次，有 AI 幫忙"]]],
+ ["mkt",["Do you use AI tools like ChatGPT or Claude in the business?","你在生意上有用 ChatGPT 或 Claude 這類 AI 工具嗎？"],[["Never","從來沒有"],["Tried them a few times","試過幾次"],["Weekly, mostly for writing","每週用，主要寫文字"],["Daily, built into how we work","每天用，已融入工作流程"]]],
+ ["mkt",["Do you follow up with past customers for reviews or repeat business?","你會跟進舊客人，邀請評價或再次光顧嗎？"],[["Never","從來沒有"],["Occasionally, by hand","偶爾，人手處理"],["Regular emails or texts","定期 Email 或短訊"],["Automatic review and rebooking messages","自動發出評價邀請和回訪提醒"]]],
+ ["data",["Do you know where your new customers come from?","你知道新客人從哪裡來嗎？"],[["No idea","完全不知道"],["A rough guess","大概猜到"],["I track some sources","有追蹤部分來源"],["Clear numbers for each channel","每個渠道都有清楚數字"]]],
+ ["data",["How do you check how the business is doing?","你怎樣了解生意的表現？"],[["I don't, really","其實沒有在看"],["I look at the bank balance","看銀行戶口餘額"],["A monthly spreadsheet","每月的試算表"],["A live dashboard","即時更新的 dashboard"]]],
+ ["data",["What's your plan for AI in the next 12 months?","未來 12 個月你對 AI 有什麼計劃？"],[["Not on my radar","還沒考慮"],["Interested, but don't know where to start","有興趣，但不知從何開始"],["Testing a few things","正在試用一些工具"],["A clear plan and budget","有清楚的計劃和預算"]]]];
+const TIERS=[[0,["Running on","Manual"],["一切還靠","人手"],["Most of your business still runs on you. That's the biggest opportunity: a few simple systems can win back hours every week and stop leads from slipping away.","大部分工作仍然靠你一個人撐著。這正是最大的機會：幾個簡單的系統就能每週省回好幾個小時，並且不再流失客人。"]],
+ [40,["Getting","Started"],["剛剛","起步"],["You have the basics, but gaps in response time and automation are quietly costing you customers. The fixes are clear and quick.","基本功已經有了，但回覆速度和自動化的缺口正悄悄讓你流失客人。要修正的地方很清楚，也很快見效。"]],
+ [60,["AI-Curious","Operator"],["AI","探索者"],["You're ahead of most small businesses. Connecting your tools and automating follow-up is the next step up.","你已經領先大部分小商家。下一步是把工具串連起來，讓跟進自動化。"]],
+ [80,["AI-Ready","Leader"],["AI","領先者"],["Your business is set up to use AI well. Now it's about fine-tuning and scaling what already works.","你的生意已經準備好善用 AI。接下來是微調，並把有效的做法擴大。"]]];
+const PKG=[
+ [["Launch","起步方案"],[["A new website built to bring in leads","專為帶來客人而設計的新網站"],["Google Business Profile set up and optimised","設定並優化 Google 商家檔案"],["Online booking or instant quote form","網上預約或即時報價表格"],["Automatic reply to every new inquiry","每個新查詢都自動回覆"]]],
+ [["Grow","成長方案"],[["Website redesign focused on turning visitors into inquiries","以轉換查詢為目標的網站改版"],["Instant lead reply and automatic follow-up","即時回覆查詢並自動跟進"],["Automatic review requests after every job","每次服務後自動邀請評價"],["A simple CRM so no lead gets lost","簡單的 CRM，不再漏掉任何客人"]]],
+ [["Connect","串連方案"],[["Your tools connected with automations","用自動化串連你的工具"],["A CRM pipeline from inquiry to paid","從查詢到收款的 CRM 流程"],["Automatic invoicing and payment reminders","自動發票和收款提醒"],["An AI-assisted content workflow","AI 輔助的內容製作流程"]]],
+ [["Scale","規模化方案"],[["A live business dashboard","即時更新的業務 dashboard"],["Advanced automations across the business","覆蓋整個生意的進階自動化"],["An AI receptionist for calls and texts","處理來電和短訊的 AI 接待員"],["Ongoing optimisation and support","持續優化和支援"]]]];
+const TXT={
+ web:[["Customers who search for you are likely finding competitors first. A slow or missing site makes people leave before they ever contact you.","搜尋你的客人很可能先找到你的競爭對手。網站太慢或沒有網站，客人還沒聯絡你就已經離開。"],["Your site works, but it isn't pulling its weight. Better local search ranking and an online booking or quote path would turn more visitors into inquiries.","你的網站能用，但沒有發揮應有的作用。提升本地搜尋排名，再加上網上預約或報價，就能把更多訪客變成查詢。"],["Your online presence is strong. Keep content fresh and test what makes visitors act.","你的網上形象很強。保持內容新鮮，並測試什麼最能推動訪客行動。"]],
+ lead:[["Slow replies and missed calls are likely your most expensive leak. Many people contact the business that answers first.","回覆太慢和錯過來電，很可能是你最昂貴的漏洞。很多客人會選擇最先回覆的那一家。"],["You respond reasonably, but not instantly. Automatic replies and a missed-call text-back would close the gap.","你的回覆速度還可以，但不是即時。自動回覆和未接來電自動短訊就能補上這個缺口。"],["You capture and answer leads well. A connected pipeline can help you follow up at scale.","你接收和回覆查詢做得很好。串連好的銷售流程能讓你大規模跟進。"]],
+ ops:[["A large part of your week goes to work a system could do. Every hour of admin is an hour not spent on customers or growth.","你每週有一大部分時間花在系統本可代勞的工作上。每一小時的行政，都是少了一小時照顧客人或發展生意。"],["Some of your admin is streamlined, but your tools still need you in the middle. Connecting them is the next win.","部分行政已經簡化，但工具之間仍然要靠你來回處理。把它們串連起來就是下一個突破。"],["Your operations are lean. Look for the last manual handoffs and automate them.","你的營運很精簡。找出最後幾個人手交接的地方，把它們自動化。"]],
+ mkt:[["Without steady content and follow-up, you rely on new customers every month. Past customers are your cheapest source of new revenue.","沒有穩定的內容和跟進，你每個月都要重新找客人。舊客人其實是成本最低的收入來源。"],["You market sometimes. AI can make consistent posting and review requests take minutes, not hours.","你偶爾有做行銷。AI 能讓定期發文和邀請評價只花幾分鐘，而不是幾小時。"],["Your marketing is consistent. Automating reviews and rebooking makes it compound.","你的行銷很穩定。把評價和回訪自動化，效果會不斷累積。"]],
+ data:[["You're making decisions without clear numbers. Knowing where customers come from shows what to spend more and less on.","你在沒有清楚數字的情況下做決定。知道客人從哪裡來，就知道錢應該多花或少花在哪裡。"],["You track some things, but not in one place. A simple dashboard turns guesswork into decisions.","你有追蹤部分數字，但沒有集中在一處。一個簡單的 dashboard 能把猜測變成決策。"],["You run on data. Make sure it updates automatically so it stays trusted.","你靠數據經營。確保它自動更新，數字才一直可靠。"]]};
+const ACT={
+ web:[["Claim and complete your Google Business Profile, with photos and hours","認領並完善你的 Google 商家檔案，加上相片和營業時間"],["Add an online booking or instant quote form to your site","在網站加上網上預約或即時報價表格"],["Ask your last 10 happy customers for a Google review","邀請最近 10 位滿意的客人留下 Google 評價"]],
+ lead:[["Turn on a missed-call auto-text that replies within 60 seconds","開啟未接來電自動短訊，60 秒內回覆"],["Set up an automatic email reply for every website inquiry","為每個網站查詢設定自動 Email 回覆"],["Move all leads into one simple CRM","把所有潛在客人集中到一個簡單的 CRM"]],
+ ops:[["List every task you repeat weekly and how long it takes","列出每週重複的工作，以及每項花多少時間"],["Switch invoices to automatic, with saved cards for regular clients","發票改為自動化，熟客用存檔信用卡扣款"],["Connect your form, calendar and CRM so no one re-types data","串連表格、行事曆和 CRM，不用再重複輸入資料"]],
+ mkt:[["Use AI to draft 4 weeks of posts in one sitting","用 AI 一次過草擬 4 週的貼文"],["Send an automatic review request after every job","每次服務後自動發出評價邀請"],["Set up a rebooking reminder for past customers","為舊客人設定回訪提醒"]],
+ data:[["Ask every new customer how they found you, and log it","問每位新客人怎樣找到你，並記錄下來"],["Pick 3 numbers to watch weekly: leads, bookings, revenue","每週追蹤 3 個數字：查詢、預約、營業額"],["Put those numbers on one live dashboard","把這些數字放在一個即時 dashboard 上"]]};
+const HRS=[12,7.5,3.5,1];
+const ALL=[...PROFILE.map(p=>({sec:0,q:p.q,o:p.o,chips:p.chips})),...Q.map(([k,q,o])=>({sec:P.find(p=>p.k===k).n,q,o,k}))];
+let S={i:0,a:[],lead:{},paid:false,req:null,lang:null};
+try{const s=JSON.parse(localStorage.getItem("bl-air2")||"null");if(s&&Array.isArray(s.a))S=Object.assign(S,s)}catch(e){}
+if(!S.lang)S.lang=(navigator.language||"").toLowerCase().startsWith("zh")?"zh":"en";
+const save=()=>{try{localStorage.setItem("bl-air2",JSON.stringify(S))}catch(e){}};
+const $=id=>document.getElementById(id),t=k=>T[S.lang][k],L=x=>Array.isArray(x)?x[S.lang==="en"?0:1]:x;
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let view="intro";
+const show=v=>{view=v;["intro","quiz","lead","load","result"].forEach(x=>$("v-"+x).hidden=x!==v);window.scrollTo(0,0)};
+function applyLang(){
+  document.documentElement.lang=S.lang==="en"?"en":"zh-Hant";
+  document.querySelectorAll(".lang button").forEach(b=>b.classList.toggle("on",b.dataset.l===S.lang));
+  document.querySelectorAll("[data-t]").forEach(e=>e.textContent=t(e.dataset.t));
+  document.querySelectorAll("[data-h]").forEach(e=>e.innerHTML=t(e.dataset.h));
+  $("paylist").innerHTML=t("pay").map(x=>`<li>${x}</li>`).join("");
+  $("resume").textContent=S.a.length&&S.a.length<ALL.length?t("resume"):"";
+  if(view==="quiz")render();if(view==="result")result();
+}
+document.querySelector(".lang").onclick=e=>{const b=e.target.closest("button");if(!b)return;S.lang=b.dataset.l;save();applyLang()};
+function render(){
+  const q=ALL[S.i];$("qsec").textContent=q.sec===0?t("about"):L(q.sec);$("qnum").textContent=(S.i+1)+t("of")+ALL.length;
+  $("bar").style.width=(S.i/ALL.length*100)+"%";$("qtext").textContent=L(q.q);
+  $("opts").className="opts"+(q.chips?" chips":"");
+  $("opts").innerHTML=q.o.map((o,j)=>`<button class="opt${S.a[S.i]===j?" on":""}" data-j="${j}">${L(o)}</button>`).join("");
+  $("back").disabled=S.i===0;
+}
+$("start").onclick=()=>{if(S.a.length>=ALL.length&&S.lead.email){show("result");result();return}S.i=Math.min(S.a.length,ALL.length-1);show("quiz");render()};
+$("opts").onclick=e=>{const b=e.target.closest(".opt");if(!b)return;S.a[S.i]=+b.dataset.j;save();
+  [...$("opts").children].forEach(c=>c.classList.toggle("on",c===b));
+  setTimeout(()=>{if(S.i<ALL.length-1){S.i++;save();render()}else{$("bar").style.width="100%";show("lead")}},220)};
+$("back").onclick=()=>{if(S.i>0){S.i--;render()}};
+$("nosite").onchange=e=>{$("site").disabled=e.target.checked;if(e.target.checked)$("site").value=""};
+$("leadform").onsubmit=e=>{e.preventDefault();
+  let site=$("site").value.trim();if(site&&!/^https?:\/\//i.test(site))site="https://"+site;
+  S.lead={name:$("fname").value.trim(),biz:$("biz").value.trim(),email:$("email").value.trim(),site,nosite:$("nosite").checked};save();
+  show("load");const m=t("load");let k=0;$("loadmsg").textContent=m[0];
+  const tm=setInterval(()=>{k++;if(k<m.length)$("loadmsg").textContent=m[k];else{clearInterval(tm);show("result");result(true)}},900)};
+function calc(){
+  const off=PROFILE.length,sc={};
+  P.forEach(p=>{let s=0,n=0;Q.forEach(([k],j)=>{if(k===p.k){s+=S.a[off+j]||0;n+=3}});sc[p.k]=Math.round(s/n*100)});
+  const total=Math.round(P.reduce((a,p)=>a+sc[p.k],0)/P.length);
+  return{sc,total,hrs:HRS[S.a[off+6]||0],ind:PROFILE[0].o[S.a[0]||0]};
+}
+const lvl=v=>v<40?0:v<75?1:2;
+function result(anim){
+  const r=calc(),ti=TIERS.reduce((a,x,i)=>r.total>=x[0]?i:a,0),tr=TIERS[ti],nm=L([tr[1],tr[2]]);
+  $("rname").textContent=(S.lead.biz||"")+" · "+L(r.ind);
+  $("tier").innerHTML=esc(nm[0])+(S.lang==="en"?" ":"")+"<em>"+esc(nm[1])+"</em>";$("tierdesc").textContent=L(tr[3]);
+  let n=anim&&!matchMedia("(prefers-reduced-motion: reduce)").matches?0:r.total;
+  const step=()=>{n=Math.min(r.total,n+2);$("num").textContent=n;$("arc").style.strokeDashoffset=327-327*n/100;if(n<r.total)requestAnimationFrame(step)};step();
+  $("bars").innerHTML=P.map(p=>`<div class="bar${r.sc[p.k]<40?" low":""}"><div class="t"><span>${L(p.n)}</span><b>${r.sc[p.k]}</b></div><div class="tr"><i style="width:${Math.max(r.sc[p.k],3)}%"></i></div></div>`).join("");
+  const order=[...P].sort((a,b)=>r.sc[a.k]-r.sc[b.k]),top=order.slice(0,3),pk=PKG[ti],wk=i=>S.lang==="en"?t("week")+" "+i:t("week")+" "+i+" 週";
+  const hasSite=S.lead.site&&!S.lead.nosite;
+  $("report").innerHTML=`
+  <div class="card"><h2>${t("gaps")}</h2>
+   ${top.map((p,i)=>`<div class="pillar"><p class="lvl">${t("gap")} ${i+1} · ${L(p.n)} · ${r.sc[p.k]}/100</p><p>${L(TXT[p.k][lvl(r.sc[p.k])])}</p></div>`).join("")}
+   <div class="pillar"><p class="lvl">${t("time")}</p><p>${t("timep")(r.hrs,Math.round(r.hrs*48))}</p></div></div>
+  <div class="card"><h2>${t("plan")}</h2><div class="plan">
+   ${top.map((p,i)=>`<div><b>${wk(i+1)}</b><span><strong>${L(p.n)}.</strong> ${ACT[p.k].slice(0,2).map(L).join(S.lang==="en"?". ":"；")}${S.lang==="en"?".":"。"}</span></div>`).join("")}
+   <div><b>${wk(4)}</b><span><strong>${t("lock")}</strong> ${L(ACT[top[0].k][2])}${S.lang==="en"?". ":"。"}${t("retake")}</span></div></div></div>
+  <div class="card"><h2>${t("all")}</h2>${order.map(p=>`<div class="pillar"><p class="lvl">${L(p.n)} · ${r.sc[p.k]}/100</p><p>${L(TXT[p.k][lvl(r.sc[p.k])])}</p><p class="small">${t("quick")}${ACT[p.k].map(L).join(" · ")}</p></div>`).join("")}</div>
+  <div class="card pkg"><p class="name">${t("pkgh")}</p><h2>Bluluma ${L(pk[0])}</h2><p class="small">${t("pkgp")}</p><ul class="tick">${pk[1].map(x=>`<li>${L(x)}</li>`).join("")}</ul></div>
+  <div class="card cta" id="cta">${S.req?`<h2>${t("done")}</h2><p>${t("donep")(esc(S.lead.email))}</p><p class="small">${t("demo2")}</p>`:`
+   <h2>${t("ctah")}</h2><p>${t(hasSite?"ctap1":"ctap0")}</p>${hasSite?`<p class="small">${esc(S.lead.site)}</p>`:""}
+   <form id="reqform"><label class="check"><input type="checkbox" id="consent"><span>${t("ctac")}</span></label>
+   <label for="notes">${t("notes")}</label><textarea id="notes"></textarea>
+   <div class="row"><button class="btn" type="submit">${t("ctab")}</button></div><p class="small" id="reqmsg" aria-live="polite"></p></form>
+   <p class="small">${t("ctas")}</p>`}</div>`;
+  const f=$("reqform");if(f)f.onsubmit=e=>{e.preventDefault();if(!$("consent").checked){$("reqmsg").textContent=t("need");return}
+    S.req={at:new Date().toISOString(),notes:$("notes").value.trim(),pkg:pk[0][0],score:r.total};save();result()};
+  if(S.paid)unlock();
+}
+function unlock(){S.paid=true;save();$("report").classList.remove("blur");$("paybox").hidden=true;$("lockwrap").classList.remove("locked")}
+$("unlock").onclick=()=>{unlock();$("report").scrollIntoView({behavior:"smooth"})};
+applyLang();
+}
+</script>
+</body>
+</html>
