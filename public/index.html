@@ -163,7 +163,7 @@ ul.tick li::before{content:"";position:absolute;left:4px;top:15px;width:10px;hei
 <script>
 {
 const API="https://uzdjwpkgldzhnoxjeyrw.supabase.co/functions/v1/quiz-api";
-const PAYLINK={en:"https://buy.stripe.com/4gMcN76KHdLq6004nA3ZK14",zh:"https://buy.stripe.com/00w4gB7OLcHmfAA5rE3ZK15"};
+const PAYLINK={en:"",zh:""}; // $2.99 paywall removed 2026-11-23 (Stripe links deactivated)
 const LIVE=/(^|\.)bluluma\.com$|workers\.dev$/.test(location.hostname);
 const IB=LIVE?"/img/":"img/";
 const P=[
@@ -401,7 +401,7 @@ function calc(){
 const lvl=v=>v<40?0:v<75?1:2;
 function result(){
   const r=calc(),ti=TIERS.reduce((a,x,i)=>r.total>=x[0]?i:a,0),tr=TIERS[ti],nm=L([tr[1],tr[2]]);
-  const order=[...P].sort((a,b)=>r.sc[a.k]-r.sc[b.k]),top=order.slice(0,3),pk=PKG[ti],hasSite=S.lead.site&&!S.lead.nosite,qual=S.paid||[0,2].includes(S.a[0]);
+  const order=[...P].sort((a,b)=>r.sc[a.k]-r.sc[b.k]),top=order.slice(0,3),pk=PKG[ti],hasSite=S.lead.site&&!S.lead.nosite,qual=[0,2].includes(S.a[0]);
   if(!S.bonus){S.bonus={k:order[0].k,exp:Date.now()+14*864e5};save()}
   const bk=S.bonus.k,exp=t("date")(new Date(S.bonus.exp)),dot=en()?". ":"。";
   const report=`
@@ -422,9 +422,7 @@ function result(){
      <div class="face front"><img src="${IB}bluluma-icon-white.svg" alt=""><div><h3 style="color:inherit">${t("bonusfront")}</h3><p class="tap">${t("tap")} →</p></div></div>
      <div class="face back"><div><div class="amt">$300</div><div class="for">${en()?t("off")+" "+L(BONUS[bk]):"抵用券 · 用於你的"+L(BONUS[bk])}</div></div><div class="small">${t("valid")(exp)} ${t("fine")}</div></div>
     </button></div></section>
-   <section class="sec"><div class="${S.paid?"":"locked"}" id="lockwrap"><div class="${S.paid?"":"blur"}" id="report">${report}</div>
-    ${S.paid?"":`<div class="pay" id="paybox"><div class="card"><h3>${t("unlockh")}</h3><p class="small">${t("unlockp")}</p><div class="price">$2.99</div><p class="small">${t("once")}</p>
-     <ul class="tick">${t("pay").map(x=>`<li>${x}</li>`).join("")}</ul><button class="btn" id="unlock">${t("unlockb")}</button>${PAYLINK[S.lang]?"":`<p class="small">${t("demo")}</p>`}</div></div>`}</div></section>
+   <section class="sec" id="report">${report}</section>
    <section class="sec"><h2>${t("canh")}</h2><p class="lead">${t("canp")}</p>
     <div class="can">${CAN.map(c=>`<div><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICON[c[0]]}</svg><span><h3>${L(c[1])}</h3><p>${L(c[2])}</p></span></div>`).join("")}</div></section>
    <section class="sec"><div class="stats">${t("stat").map(s=>`<div><b>${s[0]}</b><span>${s[1]}</span></div>`).join("")}</div></section>
@@ -432,7 +430,7 @@ function result(){
     <div class="cases">${CASES.map(c=>`<figure><img src="img/${c[0]}.webp" alt="${c[1]} website" loading="lazy"><figcaption>${c[1]}<span>${L(c[2])}</span></figcaption></figure>`).join("")}</div></section>
    <section class="sec"><h2>${t("revh")}</h2><div class="revs">${REV.map(revCard).join("")}</div></section>
    <section class="sec"><div class="card cta" id="cta">${S.req?`<h2>${t("done")}</h2><p>${t("donep")(esc(S.lead.email))}</p>${LIVE?"":`<p class="small">${t("demo2")}</p>`}`:`
-    ${qual?`<h2>${t("ctah")}</h2><p>${t(hasSite?"ctap1":"ctap0")}</p>${hasSite?`<p class="small">${esc(S.lead.site)}</p>`:""}`:`<h2>${t("ctah2")}</h2><p>${t("ctap2")}</p><p class="small">${t("prevup")}</p>`}
+    ${qual?`<h2>${t("ctah")}</h2><p>${t(hasSite?"ctap1":"ctap0")}</p>${hasSite?`<p class="small">${esc(S.lead.site)}</p>`:""}`:`<h2>${t("ctah2")}</h2><p>${t("ctap2")}</p>`}
     <span class="chip">$300 · ${L(BONUS[bk])}</span><p class="small">${t("ctabonus")} ${t("valid")(exp)}</p>
     <form id="reqform"><label class="check"><input type="checkbox" id="consent"><span>${t(qual?"ctac":"ctac2")}</span></label>
     <label for="notes">${t("notes")}</label><textarea id="notes"></textarea>
