@@ -73,6 +73,7 @@ p{margin:.6em 0}.lead{font-size:17px;color:var(--mute)}
 label{display:block;font-size:14px;color:var(--mute);margin:16px 0 6px}
 input,textarea{width:100%;font:16px var(--sans);padding:13px 14px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink);min-height:50px}
 textarea{min-height:90px;resize:vertical}
+textarea::placeholder{color:var(--mute);opacity:.75}
 .check{display:flex;gap:10px;align-items:flex-start;color:var(--ink);font-size:15px;margin-top:12px;cursor:pointer}
 .check input{width:20px;height:20px;min-height:0;margin-top:3px;flex:none;accent-color:var(--acc)}
 .done{width:96px;height:96px;margin:30px auto 18px;display:block}
@@ -203,7 +204,7 @@ ctah:"Get your custom proposal and a <em>free website preview.</em>",
 ctap1:"We'll review your current website and design a free preview of your new homepage, sent by email with a proposal for your recommended package.",
 ctap0:"We'll design a free preview of your new website homepage, sent by email with a proposal for your recommended package.",
 ctabonus:"Your $300 bonus is applied automatically.",ctah2:"Get your <em>custom proposal.</em>",ctab1:"Get your custom proposal and a free website preview",ctab2:"Get your custom proposal",ctap2:"We'll send a proposal for your recommended package, built around your answers and your three biggest gaps.",prevup:"Unlock the full report and we'll include a free homepage preview with your proposal.",ctac2:"Yes, send me my custom proposal",
-ctac:"Yes, send me my custom proposal and free preview",notes:"Anything we should know? (optional)",ctab:"Send my proposal",
+ctac:"Yes, send me my custom proposal and free preview",notes:"Anything we should know? (optional)",ph:["e.g. Our online booking system is really hard to use","e.g. I want to rank higher on Google Search","e.g. We miss a lot of calls when we're busy","e.g. Our website looks outdated next to our competitors"],ctab:"Send my proposal",
 ctas:"No calls, no pressure. Everything arrives by email.",
 done:"Request received.",donep:e=>`We'll email your proposal and preview to <b>${e}</b> within 2 business days.`,
 demo2:"Demo: requests are saved on this device only. They connect to Bluluma's inbox at launch.",need:"Please tick the box to request your proposal.",
@@ -234,7 +235,7 @@ ctah:"取得你的專屬提案和<em>免費網站預覽。</em>",
 ctap1:"我們會檢視你現有的網站，免費為你設計新網站首頁的預覽，連同推薦方案的提案一起用 Email 寄給你。",
 ctap0:"我們會免費為你設計新網站首頁的預覽，連同推薦方案的提案一起用 Email 寄給你。",
 ctabonus:"你的 $300 專屬獎勵會自動套用。",ctah2:"取得你的<em>專屬提案。</em>",ctab1:"取得你的專屬提案和免費網站預覽",ctab2:"取得你的專屬提案",ctap2:"我們會根據你的答案和最大的三個缺口，寄給你推薦方案的專屬提案。",prevup:"解鎖完整報告，提案會額外附上免費的首頁預覽。",ctac2:"好，請寄給我專屬提案",
-ctac:"好，請寄給我專屬提案和免費預覽",notes:"有什麼想讓我們知道的嗎？（選填）",ctab:"寄給我提案",
+ctac:"好，請寄給我專屬提案和免費預覽",notes:"有什麼想讓我們知道的嗎？（選填）",ph:["例如：我網站的預約系統超難用","例如：我想在 Google 搜尋排名高一點","例如：忙的時候常常漏接客人電話","例如：我的網站跟同行比起來太舊了"],ctab:"寄給我提案",
 ctas:"不用通電話，沒有壓力，所有內容都以 Email 寄出。",
 done:"已收到你的申請。",donep:e=>`我們會在 2 個工作天內把提案和預覽寄到 <b>${e}</b>。`,
 demo2:"示範版：申請只儲存在這部裝置。正式上線時會直接送到 Bluluma。",need:"請勾選方格以申請提案。",
@@ -392,7 +393,7 @@ function result(){
    <section class="sec"><div class="card cta" id="cta">${S.req?`<h2>${t("done")}</h2><p>${t("donep")(esc(S.lead.email))}</p>${LIVE?"":`<p class="small">${t("demo2")}</p>`}`:`
     ${qual?`<h2>${t("ctah")}</h2><p>${t(hasSite?"ctap1":"ctap0")}</p>${hasSite?`<p class="small">${esc(S.lead.site)}</p>`:""}`:`<h2>${t("ctah2")}</h2><p>${t("ctap2")}</p>`}
     <span class="chip">$300 · ${L(BONUS[bk])}</span><p class="small">${t("ctabonus")} ${t("valid")(exp)}</p>
-    <form id="reqform"><label for="notes">${t("notes")}</label><textarea id="notes"></textarea>
+    <form id="reqform"><label for="notes">${t("notes")}</label><textarea id="notes" placeholder="${t("ph")[0]}"></textarea>
     <div style="margin-top:18px"><button class="btn" type="submit">${t(qual?"ctab1":"ctab2")}</button></div><p class="small" id="reqmsg" aria-live="polite"></p></form>
     <p class="small">${t("ctas")}</p>`}</div></section>
    <div class="card"><h3>${t("five")}</h3><div class="bars">${P.map(p=>`<div class="bar${r.sc[p.k]<40?" low":""}"><div class="t"><span>${L(p.n)}</span><b>${r.sc[p.k]}</b></div><div class="tr"><i style="width:${Math.max(r.sc[p.k],3)}%"></i></div></div>`).join("")}</div></div>
@@ -409,6 +410,7 @@ function result(){
   const u=$("unlock");if(u)u.onclick=()=>{const pl=PAYLINK[S.lang];
     if(pl&&S.id){location.href=pl+"?client_reference_id="+encodeURIComponent(S.id)+"&prefilled_email="+encodeURIComponent(S.lead.email||"")+(S.lang==="zh"?"&locale=zh-TW":"");return}
     S.paid=true;save();const y=window.scrollY;result();window.scrollTo(0,y)};
+  const nt=$("notes");if(nt){let k=0;if(window.phT)clearInterval(phT);window.phT=setInterval(()=>{if(!document.body.contains(nt)){clearInterval(phT);return}if(nt.value)return;k=(k+1)%t("ph").length;nt.placeholder=t("ph")[k]},2800)}
   const f=$("reqform");if(f)f.onsubmit=e=>{e.preventDefault();    S.req={at:new Date().toISOString(),notes:$("notes").value.trim(),pkg:pk[0][0],score:r.total,bonus:bk};save();
     if(S.id)api({action:"request",id:S.id,token:S.token,notes:S.req.notes}).catch(()=>{});const y=window.scrollY;result();window.scrollTo(0,y)};
   const dk=()=>dock(S.req||!S.flipped?null:t(qual?"ctab1":"ctab2"),()=>$("cta").scrollIntoView({behavior:"smooth",block:"start"}));dk();
