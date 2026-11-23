@@ -153,6 +153,9 @@ ul.tick li::before{content:"";position:absolute;left:4px;top:15px;width:10px;hei
 .spin{width:44px;height:44px;border:3px solid var(--line);border-top-color:var(--acc);border-radius:50%;animation:s 1s linear infinite;margin:10px auto 18px}
 @keyframes s{to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){.screen,.spin,.bar .tr i,.done circle,.done path{animation:none!important;stroke-dashoffset:0!important}}
+.foot{margin-top:56px;padding-top:24px;border-top:1px solid var(--line);text-align:center;font-size:13px;color:var(--mute)}
+.foot img{height:36px;width:auto;margin:0 auto 10px}.foot .lg-l{display:block}
+.foot a{color:var(--mute)}.foot a:hover{color:var(--acc)}
 [hidden]{display:none!important}
 </style>
 </head>
@@ -161,12 +164,14 @@ ul.tick li::before{content:"";position:absolute;left:4px;top:15px;width:10px;hei
 <header>
   <div class="hrow">
     <button class="icon" id="back" aria-label="Back"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></button>
-    <a href="https://bluluma.com" aria-label="Bluluma Design"><img class="logo lg-l" src="{{LOGO}}" alt="Bluluma Design"><img class="logo lg-d" src="{{LOGOW}}" alt="Bluluma Design"></a>
+    <a href="https://bluluma.com" target="_blank" rel="noopener" aria-label="Bluluma Design"><img class="logo lg-l" src="{{LOGO}}" alt="Bluluma Design"><img class="logo lg-d" src="{{LOGOW}}" alt="Bluluma Design"></a>
     <button class="icon langb" id="lang" aria-label="Language"></button>
   </div>
   <div class="segs" id="segs" hidden><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i></div>
 </header>
 <main id="app"></main>
+<footer class="foot"><a href="https://bluluma.com" target="_blank" rel="noopener"><img class="lg-l" src="{{LOGO}}" alt="Bluluma Design"><img class="lg-d" src="{{LOGOW}}" alt="Bluluma Design"></a>
+<p>© 2026 <a href="https://bluluma.com" target="_blank" rel="noopener">Bluluma Design</a> · Vancouver, BC · <a href="https://bluluma.com" target="_blank" rel="noopener">bluluma.com</a></p></footer>
 </div>
 <div class="dock" id="dock" hidden><button class="btn" id="dockbtn"></button></div>
 
