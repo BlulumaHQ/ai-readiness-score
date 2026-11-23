@@ -438,12 +438,6 @@ function result(){
      <div class="face front"><img src="${IB}bluluma-icon-white.svg" alt=""><div><h3 style="color:inherit">${t("bonusfront")}</h3><p class="tap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 11V5a2 2 0 0 1 4 0v6"/><path d="M13 9a2 2 0 0 1 4 0v3"/><path d="M17 11a2 2 0 0 1 4 0v4a7 7 0 0 1-7 7h-1a7 7 0 0 1-6-3.5L4 15a2 2 0 0 1 3.4-2L9 15"/></svg>${t("tap")}</p></div></div>
      <div class="face back"><div><div class="amt">$300</div><div class="for">${en()?t("off")+" "+L(BONUS[bk]):"抵用券 · 用於你的"+L(BONUS[bk])}</div></div><div class="small">${t("valid")(exp)} ${t("fine")}</div></div>
     </button></div></section>
-   <section class="sec"><div class="card cta" id="cta">${S.req?`<h2>${t("done")}</h2><p>${t("donep")(esc(S.lead.email))}</p>${LIVE?"":`<p class="small">${t("demo2")}</p>`}`:`
-    ${qual?`<h2>${t("ctah")}</h2><p>${t(hasSite?"ctap1":"ctap0")}</p>${hasSite?`<p class="small">${esc(S.lead.site)}</p>`:""}`:`<h2>${t("ctah2")}</h2><p>${t("ctap2")}</p>`}
-    <span class="chip">$300 · ${L(BONUS[bk])}</span><p class="small">${t("ctabonus")} ${t("valid")(exp)}</p>
-    <form id="reqform"><label for="notes">${t("notes")}</label><textarea id="notes" placeholder="${t("ph")[0]}"></textarea>
-    <div style="margin-top:18px"><button class="btn" type="submit">${t(qual?"ctab1":"ctab2")}</button></div><p class="small" id="reqmsg" aria-live="polite"></p></form>
-    <p class="small">${t("ctas")}</p>`}</div></section>
    <div class="card"><h3>${t("five")}</h3><div class="bars">${P.map(p=>`<div class="bar${r.sc[p.k]<40?" low":""}"><div class="t"><span>${L(p.n)}</span><b>${r.sc[p.k]}</b></div><div class="tr"><i style="width:${Math.max(r.sc[p.k],3)}%"></i></div></div>`).join("")}</div></div>
    <section class="sec" id="report">${report}</section>
    <section class="sec"><h2>${t("canh")}</h2><p class="lead">${t("canp")}</p>
@@ -452,6 +446,12 @@ function result(){
    <section class="sec"><h2>${t("caseh")}</h2><p class="small">${t("casep")}</p>
     <div class="cases">${CASES.map(c=>`<figure><img src="${IB}${c[0]}.webp" alt="${c[1]} website" loading="lazy"><figcaption>${c[1]}<span>${L(c[2])}</span></figcaption></figure>`).join("")}</div></section>
    <section class="sec"><h2>${t("revh")}</h2><div class="revs">${REV.map(revCard).join("")}</div></section>
+   <section class="sec"><div class="card cta" id="cta">${S.req?`<h2>${t("done")}</h2><p>${t("donep")(esc(S.lead.email))}</p>${LIVE?"":`<p class="small">${t("demo2")}</p>`}`:`
+    ${qual?`<h2>${t("ctah")}</h2><p>${t(hasSite?"ctap1":"ctap0")}</p>${hasSite?`<p class="small">${esc(S.lead.site)}</p>`:""}`:`<h2>${t("ctah2")}</h2><p>${t("ctap2")}</p>`}
+    <span class="chip">$300 · ${L(BONUS[bk])}</span><p class="small">${t("ctabonus")} ${t("valid")(exp)}</p>
+    <form id="reqform"><label for="notes">${t("notes")}</label><textarea id="notes" placeholder="${t("ph")[0]}"></textarea>
+    <div style="margin-top:18px"><button class="btn" type="submit">${t(qual?"ctab1":"ctab2")}</button></div><p class="small" id="reqmsg" aria-live="polite"></p></form>
+    <p class="small">${t("ctas")}</p>`}</div></section>
 `;
   let n=0;const step=()=>{if(view!=="result")return;n=Math.min(r.total,n+1);$("num").textContent=n;$("arc").style.strokeDashoffset=327-327*n/100;if(n<r.total)requestAnimationFrame(step)};step();
   $("flip").onclick=()=>{if(S.flipped)return;S.flipped=true;save();$("flip").classList.add("open");confetti();setTimeout(dk,1400)};
