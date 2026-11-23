@@ -163,7 +163,7 @@ ul.tick li::before{content:"";position:absolute;left:4px;top:15px;width:10px;hei
 <script>
 {
 const API="https://uzdjwpkgldzhnoxjeyrw.supabase.co/functions/v1/quiz-api";
-const PAYLINK={en:"",zh:""};
+const PAYLINK={en:"https://buy.stripe.com/4gMcN76KHdLq6004nA3ZK14",zh:"https://buy.stripe.com/00w4gB7OLcHmfAA5rE3ZK15"};
 const LIVE=/(^|\.)bluluma\.com$|workers\.dev$/.test(location.hostname);
 const IB=LIVE?"/img/":"img/";
 /*DATA*/
@@ -193,7 +193,7 @@ stat:[["20+","years designing for business"],["500+","websites built"],["EN · �
 ctah:"Get your custom proposal and a <em>free preview.</em>",
 ctap1:"We'll review your current website and send a redesign preview built for your business, with a proposal for your recommended package.",
 ctap0:"We'll design a free homepage concept for your business and send it with a proposal for your recommended package.",
-ctabonus:"Your $300 bonus is applied automatically.",
+ctabonus:"Your $300 bonus is applied automatically.",ctah2:"Get your <em>custom proposal.</em>",ctap2:"We'll send a proposal for your recommended package, built around your answers and your three biggest gaps.",prevup:"Unlock the full report and we'll include a free homepage preview with your proposal.",ctac2:"Yes, send me my custom proposal",
 ctac:"Yes, send me my custom proposal and free preview",notes:"Anything we should know? (optional)",ctab:"Send my proposal",
 ctas:"No calls, no pressure. Everything arrives by email.",
 done:"Request received.",donep:e=>`We'll email your proposal and preview to <b>${e}</b> within 2 business days.`,
@@ -224,7 +224,7 @@ stat:[["20+","年商業設計經驗"],["500+","個網站作品"],["EN · 中文"
 ctah:"免費取得專屬提案和<em>網站預覽。</em>",
 ctap1:"我們會檢視你現有的網站，為你的生意做一個改版預覽，並附上推薦方案的提案。",
 ctap0:"我們會免費為你的生意設計一個首頁概念，並附上推薦方案的提案。",
-ctabonus:"你的 $300 專屬獎勵會自動套用。",
+ctabonus:"你的 $300 專屬獎勵會自動套用。",ctah2:"免費取得<em>專屬提案。</em>",ctap2:"我們會根據你的答案和最大的三個缺口，寄給你推薦方案的專屬提案。",prevup:"解鎖完整報告，提案會額外附上免費的首頁預覽。",ctac2:"好，請寄給我專屬提案",
 ctac:"好，請寄給我專屬提案和免費預覽",notes:"有什麼想讓我們知道的嗎？（選填）",ctab:"寄給我提案",
 ctas:"不用通電話，沒有壓力，所有內容都以 Email 寄出。",
 done:"已收到你的申請。",donep:e=>`我們會在 2 個工作天內把提案和預覽寄到 <b>${e}</b>。`,
@@ -353,7 +353,7 @@ function calc(){
 const lvl=v=>v<40?0:v<75?1:2;
 function result(){
   const r=calc(),ti=TIERS.reduce((a,x,i)=>r.total>=x[0]?i:a,0),tr=TIERS[ti],nm=L([tr[1],tr[2]]);
-  const order=[...P].sort((a,b)=>r.sc[a.k]-r.sc[b.k]),top=order.slice(0,3),pk=PKG[ti],hasSite=S.lead.site&&!S.lead.nosite;
+  const order=[...P].sort((a,b)=>r.sc[a.k]-r.sc[b.k]),top=order.slice(0,3),pk=PKG[ti],hasSite=S.lead.site&&!S.lead.nosite,qual=S.paid||[0,2].includes(S.a[0]);
   if(!S.bonus){S.bonus={k:order[0].k,exp:Date.now()+14*864e5};save()}
   const bk=S.bonus.k,exp=t("date")(new Date(S.bonus.exp)),dot=en()?". ":"。";
   const report=`
@@ -384,9 +384,9 @@ function result(){
     <div class="cases">${CASES.map(c=>`<figure><img src="img/${c[0]}.webp" alt="${c[1]} website" loading="lazy"><figcaption>${c[1]}<span>${L(c[2])}</span></figcaption></figure>`).join("")}</div></section>
    <section class="sec"><h2>${t("revh")}</h2><div class="revs">${REV.map(revCard).join("")}</div></section>
    <section class="sec"><div class="card cta" id="cta">${S.req?`<h2>${t("done")}</h2><p>${t("donep")(esc(S.lead.email))}</p>${LIVE?"":`<p class="small">${t("demo2")}</p>`}`:`
-    <h2>${t("ctah")}</h2><p>${t(hasSite?"ctap1":"ctap0")}</p>${hasSite?`<p class="small">${esc(S.lead.site)}</p>`:""}
+    ${qual?`<h2>${t("ctah")}</h2><p>${t(hasSite?"ctap1":"ctap0")}</p>${hasSite?`<p class="small">${esc(S.lead.site)}</p>`:""}`:`<h2>${t("ctah2")}</h2><p>${t("ctap2")}</p><p class="small">${t("prevup")}</p>`}
     <span class="chip">$300 · ${L(BONUS[bk])}</span><p class="small">${t("ctabonus")} ${t("valid")(exp)}</p>
-    <form id="reqform"><label class="check"><input type="checkbox" id="consent"><span>${t("ctac")}</span></label>
+    <form id="reqform"><label class="check"><input type="checkbox" id="consent"><span>${t(qual?"ctac":"ctac2")}</span></label>
     <label for="notes">${t("notes")}</label><textarea id="notes"></textarea>
     <div style="margin-top:18px"><button class="btn" type="submit">${t("ctab")}</button></div><p class="small" id="reqmsg" aria-live="polite"></p></form>
     <p class="small">${t("ctas")}</p>`}</div></section>`;
